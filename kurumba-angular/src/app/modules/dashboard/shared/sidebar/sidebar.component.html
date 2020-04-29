@@ -1,0 +1,62 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <h2></h2>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <h2 matSubheader></h2>
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over">
+          <mat-toolbar>
+            <mat-toolbar-row>
+              <h2>Kurumba MA VI</h2>
+            </mat-toolbar-row>
+          </mat-toolbar>
+
+          <mat-nav-list>
+            <h2 matSubheader></h2>
+            <a
+              mat-list-item
+              (click)="sidenav.close()"
+              routerLinkActive="list-item-active"
+            >
+              <mat-icon matListIcon> </mat-icon>
+            </a>
+            <a
+              mat-list-item
+              (click)="sidenav.close()"
+              routerLinkActive="list-item-active"
+            >
+              <mat-icon matListIcon> </mat-icon>
+            </a>
+            <a
+              mat-list-item
+              (click)="sidenav.close()"
+              routerLinkActive="list-item-active"
+            >
+              <mat-icon matListIcon> </mat-icon>
+            </a>
+            <a
+              mat-list-item
+              (click)="sidenav.close()"
+              routerLinkActive="list-item-active"
+            >
+              <mat-icon matListIcon> </mat-icon>
+            </a>
+
+            <mat-divider></mat-divider>
+          </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+          <!-- <crm-navigation-bar
+
+      (toggleSidenav)="sidenav.toggle()">
+    </crm-navigation-bar> -->
+          <router-outlet></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container> </mat-nav-list></mat-sidenav
+></mat-sidenav-container>

@@ -1,0 +1,87 @@
+import { LoginService } from './../../services/login.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from 'src/app/shared/models/user.model';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+
+  user: User = new User();
+  loginForm: FormGroup;
+  loginInvalid: boolean = false;
+  submitted = false;
+  errorMsg = '';
+  hide = true;
+
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.buildLoginForm();
+  }
+
+  buildLoginForm() {
+    this.loginForm = this.fb.group({
+      username: [this.user.username, [Validators.required]],
+      password: [this.user.password, [Validators.required]]
+    });
+
+  }
+
+  get f() {
+    return this.loginForm.controls;
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+  get pwd() {
+    return this.loginForm.get('password');
+  }
+
+  login() {
+    console.log('clicked');
+    this.submitted = true;
+    if (this.loginForm.valid) {
+      this.loginService.login(this.f.username.value, this.f.password.value)
+        .subscribe(
+          res => {
+            // this.router.navigate(['/home']);
+
+            if (res.code === 200) {
+              console.log('login success');
+              this.router.navigate(['/school/home']);
+              // localStorage.setItem('loggedUser', JSON.stringify(res.meta));
+              // if(res.meta.role==='SYSTEM_ADMIN'){
+              // this.router.navigate(['/school/home']);
+              }
+              else{
+                console.log('login else');
+              // this.router.navigate(['/school/home']);
+              // }
+            }
+          },
+          err => {
+            this.loginInvalid = true;
+            if (err.status == 401) {
+              this.errorMsg = err.error.message;
+            }
+            else {
+              this.loginInvalid = true;
+              this.errorMsg = 'Login Failed';
+            }
+          });
+    }
+  }
+
+
+
+}

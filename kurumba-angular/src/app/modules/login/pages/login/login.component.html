@@ -1,0 +1,68 @@
+<!-- login form -->
+<mat-card >
+  <mat-card-header>
+    <mat-card-title>
+      <img
+          src="assets/images/kurumba_logo.png"
+          alt="kurumba ma vi logo">
+    </mat-card-title>
+
+    <mat-card-title ><h3 class="text-center">Login</h3></mat-card-title>
+
+     </mat-card-header>
+
+  <mat-card-content>
+     <form
+        class="my-form"
+        [formGroup]="loginForm">
+
+        <div
+            class="error-msg"
+           *ngIf="loginInvalid">
+            {{errorMsg}}
+        </div>
+
+
+        <mat-form-field class="full-width">
+           <mat-label>Username</mat-label>
+            <input
+              matInput
+              type='text'
+              placeholder="Username"
+              formControlName='username'
+              name="username"
+              required>
+           <mat-error>
+            Enter Username.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+           <mat-label>Password</mat-label>
+            <input
+                matInput
+                type='password'
+                placeholder="Password"
+                formControlName='password'
+                name="password"
+                [type]="hide?'password':'text'"
+                required>
+                <mat-icon
+                    matSuffix
+                    (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+                  </mat-icon>
+           <mat-error>
+            Enter password.
+          </mat-error>
+        </mat-form-field>
+     </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+     <button
+     mat-raised-button
+     (click)="login()"
+     color="primary"
+     [disabled]="!loginForm.valid">LOGIN</button>
+  </mat-card-actions>
+</mat-card>
