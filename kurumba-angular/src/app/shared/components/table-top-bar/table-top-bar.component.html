@@ -1,1 +1,28 @@
-<p>table-top-bar works!</p>
+<div class="d-flex  row">
+
+  <!-- add button -->
+  <div class="col-2">
+    <button class="btn bg-blue btn-rounded text-white btn-sm mr-1"
+            (click)="onAdd()"
+            *ngIf="enableAdd">
+            Create New
+    </button>
+  </div>
+
+  <!-- /add button -->
+
+  <!-- search -->
+
+  <div *ngIf="enableSearch" class="d-flex ml-auto pr-3 mr-3">
+    <div class="mr-1 search__container"
+         [class.search__container--expanded]="isSearchShowing">
+      <input type="text" class="form-control" placeholder="Search..">
+    </div>
+    <button class="btn rounded-circle bg-blue text-white"
+            (click)="isSearchShowing = !isSearchShowing">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+
+  <!--/ search  -->
+</div>

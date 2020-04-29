@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-form-group',
@@ -7,7 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormGroupComponent implements OnInit {
 
-  constructor() { }
+
+  @Input()
+  for = '';
+
+  @Input()
+  label = '';
+
+  @Input()
+  required = false;
+
+  @Output()
+  save: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  cancel: EventEmitter<void> = new EventEmitter();
+  constructor(
+    private spinner: MatProgressSpinnerModule
+  ) { }
 
   ngOnInit(): void {
   }

@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 const material = [
   MatTableModule,
@@ -38,7 +38,8 @@ const material = [
   MatPaginatorModule,
   MatSortModule,
   MatDividerModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDialogModule,
 ];
 @NgModule({
   exports: [material],

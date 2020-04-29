@@ -1,2 +1,21 @@
 <p>action-buttons works!</p>
 
+<div class="d-flex align-items-center row ml-2">
+
+    <button
+        mat-button
+        (click)="onEdit()"
+        color='primary'
+        *ngIf="enableEdit"
+        >Edit
+      </button>
+    <button
+        mat-button
+        (click)="onDelete()"
+        color='accent'
+        *ngIf="enableDelete"
+        >Delete
+      </button>
+
+
+  </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-page-template',
@@ -7,9 +7,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPageTemplateComponent implements OnInit {
 
+
+  @Input()
+  heading: string;
+
+  @Input()
+  enableAdd = true;
+
+  @Input()
+  enableSearch = true;
+
+  @Input()
+  enableActiveLink = false;
+
+
+  @Output()
+  search: EventEmitter<string> = new EventEmitter();
+
+  @Output()
+  add: EventEmitter<void> = new EventEmitter();
+
+
+  list = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+  onAdd() {
+    this.add.emit();
+  }
+
+  onSearch() {
+    this.search.emit();
   }
 
 }

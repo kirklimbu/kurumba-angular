@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-table-top-bar',
@@ -7,9 +7,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableTopBarComponent implements OnInit {
 
+  isSearchShowing = false;
+
+  @Input()
+  enableSearch = true;
+
+  @Input()
+  enableAdd = true;
+
+  keyword: string;
+
+  @Output()
+  add: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  search: EventEmitter<void> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onAdd() {
+    this.add.emit();
+  }
+
+  onSearch(){
+    this.search.emit();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-save-cancel-buttons',
@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaveCancelButtonsComponent implements OnInit {
 
+  @Output()
+  save: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  cancel: EventEmitter<void> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
