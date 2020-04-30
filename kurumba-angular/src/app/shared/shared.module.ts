@@ -1,4 +1,4 @@
-import { MaterialModule } from './../../../.history/src/app/shared/material/material.module_20200428004311';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,10 +12,22 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { SaveCancelButtonsComponent } from './components/save-cancel-buttons/save-cancel-buttons.component';
 import { TableTopBarComponent } from './components/table-top-bar/table-top-bar.component';
 import { ConstantsComponent } from './components/constants/constants.component';
+import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
-  declarations: [ActionButtonsComponent, DeletePopupComponent, FormGroupComponent, ListPageTemplateComponent, NgxSpinnerComponent, PageHeaderComponent, SaveCancelButtonsComponent, TableTopBarComponent, ConstantsComponent],
+  declarations: [
+    ActionButtonsComponent,
+    DeletePopupComponent,
+    FormGroupComponent,
+    ListPageTemplateComponent,
+    NgxSpinnerComponent,
+    PageHeaderComponent,
+    SaveCancelButtonsComponent,
+    TableTopBarComponent,
+    ConstantsComponent,
+    
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule,

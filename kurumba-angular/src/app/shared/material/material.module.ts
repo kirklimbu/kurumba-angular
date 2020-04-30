@@ -19,6 +19,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 const material = [
   MatTableModule,
@@ -40,6 +42,7 @@ const material = [
   MatDividerModule,
   MatCheckboxModule,
   MatDialogModule,
+  MatGridListModule
 ];
 @NgModule({
   exports: [material],

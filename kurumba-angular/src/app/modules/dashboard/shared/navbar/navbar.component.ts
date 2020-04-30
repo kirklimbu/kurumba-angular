@@ -14,6 +14,9 @@ export class NavbarComponent implements OnInit {
   currentTime: any;
 
   isNavbarCollapsed = true;
+  isAuthenticated = true;
+
+  title ='Kurumba MA VI'
 
   constructor(
     private router: Router,

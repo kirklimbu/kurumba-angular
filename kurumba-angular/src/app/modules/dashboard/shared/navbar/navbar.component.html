@@ -1,30 +1,60 @@
+<mat-toolbar class="expanded-toolbar">
+  <button mat-icon-button>
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+  </button>
+  <span>
+    <H2>{{ title }}</H2>
+  </span>
+  <button
+      mat-button routerLink="/">
+      <mat-icon>home</mat-icon></button>
+
+  <div
+      fxLayout="row"
+      fxShow="false"
+      fxShow.gt-sm>
+    <button
+        mat-button
+        routerLink="/login"
+        *ngIf="!isAuthenticated">
+      <mat-icon>power_settings_new</mat-icon>
+      Login
+    </button>
+
+   <span  class="logout-btn">
+    <button
+    mat-button
+    *ngIf="isAuthenticated"
+    (click)="logout()">
+  <mat-icon>exit_to_app</mat-icon>
+  Logout
+</button>
+   </span>
+  </div>
+</mat-toolbar>
+
+
 <mat-sidenav-container>
-
   <mat-sidenav
-  #sidenav
-  mode="over">
-
-    <mat-toolbar>
-      <mat-toolbar-row>
-        <h2> Kurumba MA VI </h2>
-      </mat-toolbar-row>
-    </mat-toolbar>
-
+      #sidenav
+      position="start"
+      mode="side"
+      opened>
     <mat-nav-list>
-      <h2 matSubheader>  </h2>
-
-
-      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+      <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
+      <a mat-list-item [routerLink]="'/contacts'"> Contacts </a>
+      <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
+      <a mat-list-item [routerLink]="'/activities'"> Activities </a>
+      <a mat-list-item [routerLink]="'/create-activity'"> Create Activity </a>
+      <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
     </mat-nav-list>
-
   </mat-sidenav>
 
+
   <mat-sidenav-content>
-    <!-- <crm-navigation-bar
-
-      (toggleSidenav)="sidenav.toggle()">
-    </crm-navigation-bar> -->
-    <router-outlet></router-outlet>
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
-
 </mat-sidenav-container>
