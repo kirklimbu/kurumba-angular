@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user.model';
 import { Router } from '@angular/router';
+import { log } from 'util';
+import { NgxSpinnerComponent } from 'src/app/shared/components/ngx-spinner/ngx-spinner.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -54,22 +56,8 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.f.username.value, this.f.password.value)
         .subscribe(
           res => {
-            // this.router.navigate(['/home']);
-
-            if (res.code === 200) {
-              console.log('login success');
-              this.router.navigate(['/school/home']);
-              // localStorage.setItem('loggedUser', JSON.stringify(res.meta));
-              // if(res.meta.role==='SYSTEM_ADMIN'){
-              // this.router.navigate(['/school/home']);
-              }
-              else{
-                console.log('login else');
-              // this.router.navigate(['/school/home']);
-              // }
-            }
-          },
-          err => {
+            this.router.navigate(['/school/home']);
+          }, err => {
             this.loginInvalid = true;
             if (err.status == 401) {
               this.errorMsg = err.error.message;

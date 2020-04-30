@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-ngx-spinner',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NgxSpinnerComponent implements OnInit {
 
-  constructor() { }
+
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'determinate';
+  value = 50;
+  constructor(
+    
+  ) { }
 
   ngOnInit(): void {
   }

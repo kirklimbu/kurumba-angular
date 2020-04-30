@@ -3,7 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'kurumba-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
