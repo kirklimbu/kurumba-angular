@@ -4,5 +4,5 @@ export class HomeItem {
   icon?: string;
   hideTile?: boolean;
   // permissions?: string[];
-  // parentMenu ?:string[];
+  parentMenu ?:string[];
 }

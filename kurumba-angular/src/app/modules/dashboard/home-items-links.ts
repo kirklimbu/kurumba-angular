@@ -3,12 +3,12 @@ import { HomeItem } from '../home/home-item.model';
 
 export const HOME_ITEMS_LINKS: HomeItem[] = [
 
-  {
-    label: 'User',
-    link: '../user',
-    icon: 'fa-user',
-    // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN']
-  },
+  // {
+  //   label: 'User',
+  //   link: '../user',
+  //   icon: 'fa-user',
+  //   // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN']
+  // },
   {
     label: 'Student',
     link: 'student',
@@ -28,9 +28,15 @@ export const HOME_ITEMS_LINKS: HomeItem[] = [
     // permissions: ['INVENTORY_ADMIN']
   },
   {
+    label: 'Year',
+    link: 'year',
+    icon: 'fas fa-database ',
+    // permissions: ['INVENTORY_ADMIN']
+  },
+{
     label: 'Backup',
     link: 'backup',
-    icon: 'fas fa-database',
+    icon: 'fas fa-database ',
     // permissions: ['INVENTORY_ADMIN']
   },
 
