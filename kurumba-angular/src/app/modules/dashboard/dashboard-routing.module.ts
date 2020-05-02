@@ -15,9 +15,22 @@ const routes: Routes = [
 
         }
 
+      },
+      {
+        path: 'student',
+        loadChildren: () => import('./../student/student.module').then(m => m.StudentModule),
+        data: {
+
+          breadcrumb: 'Student',
+
+          // allowedRoles: [UserRoleType.SYSTEM_ADMIN, UserRoleType.SUPER_ADMIN]
+        },
+        // canActivate: [UserRoleGuard]
+
       }
     ]
   },
+
   {
     path: '',
     pathMatch: 'full',
