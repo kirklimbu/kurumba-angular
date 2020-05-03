@@ -24,6 +24,7 @@
     "@angular/router": "~9.1.1",
     "@fortawesome/angular-fontawesome": "^0.6.1",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "angular-crumbs": "^3.0.1",
     "bootstrap": "^4.4.0",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.5.4",

@@ -1,7 +1,8 @@
+import { UserDetialService } from 'src/app/shared/services/user-detial.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-page-header',
+  selector: 'kurumba-page-header',
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.scss']
 })
@@ -17,14 +18,16 @@ export class PageHeaderComponent implements OnInit {
 
 
 
-  constructor() {
-    // private userDetailService: UserDetailService
+constructor(
+  private userDetailService: UserDetialService
 
-  }
+) {
 
-  ngOnInit(): void {
-    // this.activeLink =this.userDetailService.getSelectedLink();
+}
 
-  }
+ngOnInit(): void {
+  this.activeLink = this.userDetailService.getSelectedLink();
+
+}
 
 }

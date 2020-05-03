@@ -1,3 +1,4 @@
+import { StudentFormComponent } from './shared/student-form/student-form.component';
 import { ClassFormComponent } from './shared/class-form/class-form.component';
 import { ClassComponent } from './pages/class/class.component';
 import { StudentComponent } from './pages/student/student.component';
@@ -13,22 +14,22 @@ const routes: Routes = [
   },
   {
     path: 'addStudent',
-    component: StudentComponent,
+    component: StudentFormComponent,
     data: {
-      breadcrumb: ' Edit student'
+      breadcrumb: ' Add student'
     }
 
   },
   {
     path: 'editStudent',
-    component: StudentComponent,
+    component: StudentFormComponent,
     data: {
       breadcrumb: ' Edit student'
     }
   },
   {
     path: 'class',
-    component: ClassComponent ,
+    component: ClassComponent,
     data: {
       breadcrumb: ' '
     }

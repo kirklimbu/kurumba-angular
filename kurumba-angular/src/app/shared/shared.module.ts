@@ -16,6 +16,10 @@ import { MaterialModule } from './material/material.module';
 import { SubMenuFilterPipe } from './pipes/sub-menu-filter.pipe';
 import { UserDetialService } from './services/user-detial.service';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import {BreadcrumbModule } from 'angular-crumbs';
+
 
 
 
@@ -31,7 +35,8 @@ const DECLARATIONS: any[] = [
   TableTopBarComponent,
   ConstantsComponent,
   SubMenuFilterPipe,
-  BreadcrumbComponent
+  BreadcrumbComponent,
+  // MaterialModule
 
 
 ];
@@ -41,11 +46,18 @@ const DECLARATIONS: any[] = [
     ...DECLARATIONS,
     SaveCancelButtonsComponent,
 
+
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     MaterialModule,
+    BreadcrumbModule,
+    // NgxSpinnerModule,
+    // NgSelectModule,
+    RouterModule,
+    // WizardModule,
+    ReactiveFormsModule,
     // ToastrModule.forRoot({
     //   timeOut: 5000,
     //   positionClass: 'toast-bottom-right',
@@ -60,6 +72,7 @@ const DECLARATIONS: any[] = [
 
   exports: [
     NgxSpinnerComponent,
+    MaterialModule,
     ...DECLARATIONS
   ],
   providers: [

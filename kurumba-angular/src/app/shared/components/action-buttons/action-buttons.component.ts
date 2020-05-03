@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-action-buttons',
+  selector: 'kurumba-action-buttons',
   templateUrl: './action-buttons.component.html',
   styleUrls: ['./action-buttons.component.scss']
 })
@@ -25,6 +25,8 @@ export class ActionButtonsComponent implements OnInit {
   ngOnInit(): void {
   }
   onEdit() {
+    console.log('emiiting edit event');
+
     this.edit.emit();
   }
 

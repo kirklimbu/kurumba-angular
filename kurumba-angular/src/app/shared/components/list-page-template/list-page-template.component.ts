@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-list-page-template',
+  selector: 'kurumba-list-page-template',
   templateUrl: './list-page-template.component.html',
   styleUrls: ['./list-page-template.component.scss']
 })
