@@ -1,6 +1,5 @@
-<p>action-buttons works!</p>
 
-<div class="d-flex align-items-center row ml-2">
+<div class="d-flex align-items-center row">
 
     <button
         mat-button
@@ -9,6 +8,7 @@
         *ngIf="enableEdit"
         >Edit
       </button>
+
     <button
         mat-button
         (click)="onDelete()"
@@ -16,6 +16,5 @@
         *ngIf="enableDelete"
         >Delete
       </button>
-
 
   </div>

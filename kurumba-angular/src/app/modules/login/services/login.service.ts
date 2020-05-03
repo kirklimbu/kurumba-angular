@@ -17,12 +17,11 @@ export class LoginService {
   }
 
   login(username: string, password: string): any {
-    console.log('login service');
+    console.log('login service' +username +password);
 
     return (
       this.http
         .post<User>(this.API_URL + '/user/logen', { username, password })
-
     );
   }
 }

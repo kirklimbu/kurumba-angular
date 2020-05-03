@@ -63,6 +63,8 @@ export class LoginComponent implements OnInit {
               this.errorMsg = err.error.message;
             }
             else {
+              console.log('error '+JSON.stringify(err));
+
               this.loginInvalid = true;
               this.errorMsg = 'Login Failed';
             }
