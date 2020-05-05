@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'kurumba-action-buttons',
@@ -19,20 +21,25 @@ export class ActionButtonsComponent implements OnInit {
 
   @Output()
   delete: EventEmitter<void> = new EventEmitter();
-  constructor() { }
+
+  constructor(
+    public dialog: MatDialog
+
+  ) { }
 
 
   ngOnInit(): void {
   }
+
+
   onEdit() {
-    console.log('emiiting edit event');
 
     this.edit.emit();
   }
 
   onDelete() {
+
     this.delete.emit();
   }
-
 
 }

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
@@ -21,7 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 
   ],
-  providers: [],
+  providers: [
+    {provide: ToastrService, useClass: ToastrService}
+
+  ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
