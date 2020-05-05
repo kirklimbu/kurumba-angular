@@ -10,11 +10,9 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 export class NgxSpinnerComponent implements OnInit {
 
 
-  color: ThemePalette = 'primary';
-  mode: ProgressSpinnerMode = 'determinate';
-  value = 50;
+
   constructor(
-    
+
   ) { }
 
   ngOnInit(): void {

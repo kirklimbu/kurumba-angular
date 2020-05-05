@@ -17,8 +17,10 @@ import { SubMenuFilterPipe } from './pipes/sub-menu-filter.pipe';
 import { UserDetialService } from './services/user-detial.service';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import {BreadcrumbModule } from 'angular-crumbs';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BreadcrumbModule } from 'angular-crumbs';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 
 
@@ -53,26 +55,31 @@ const DECLARATIONS: any[] = [
     SharedRoutingModule,
     MaterialModule,
     BreadcrumbModule,
-    // NgxSpinnerModule,
+    NgxSpinnerModule,
     // NgSelectModule,
     RouterModule,
     // WizardModule,
     ReactiveFormsModule,
-    // ToastrModule.forRoot({
-    //   timeOut: 5000,
-    //   positionClass: 'toast-bottom-right',
-    //   preventDuplicates: true,
-    //   autoDismiss: true,
-    //   closeButton: true,
-    //   progressBar: true,
-    //   progressAnimation:'increasing'
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      autoDismiss: true,
+      closeButton: true,
+      progressBar: true,
+      progressAnimation:'increasing'
 
-    // }),
+    }),
   ],
 
   exports: [
     NgxSpinnerComponent,
+    BreadcrumbModule,
     MaterialModule,
+    // FormsModule,
+    // ReactiveFormsModule,
+    // RouterModule,
+
     ...DECLARATIONS
   ],
   providers: [

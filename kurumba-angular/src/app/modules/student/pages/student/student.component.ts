@@ -1,7 +1,11 @@
+import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../services/student.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DeletePopupComponent } from 'src/app/shared/components/delete-popup/delete-popup.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-student',
@@ -12,11 +16,16 @@ export class StudentComponent implements OnInit {
 
   displayedColumns: string[] = ['Sn', 'name', 'class', 'rollno', 'address', 'dob', 'fatherName', 'motherName', 'phoneNum', 'Action'];
   studentListDataSource: MatTableDataSource<any>;
+  student: any;
+
 
   constructor(
     private studentService: StudentService,
     private route: ActivatedRoute,
     private router: Router,
+    private dialog: MatDialog,
+    private spinner: NgxSpinnerService,
+    // private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +33,7 @@ export class StudentComponent implements OnInit {
   }
 
   studentForm(mode, id?) {
-    console.log('mode ' + mode);
+    console.log('mode ' + mode + ' id: ' + id);
 
     const link: any = mode === 'add' ? 'addStudent' : 'editStudent/' + id;
     this.router.navigate([link], { relativeTo: this.route });
@@ -37,30 +46,46 @@ export class StudentComponent implements OnInit {
   }
 
   fetchAllStudents() {
+    // this.toastr.success('students list');
 
     const query: boolean = false;
-    console.log('calling student service :');
     this.studentService.getAllStudents(query)
       .subscribe(
         data => {
-          // this.spinner.hide();
+          this.spinner.hide();
           this.studentListDataSource = new MatTableDataSource(data);
-          // this.studentList = JSON.parse(data);
-          console.log('server student list ' + this.studentListDataSource);
-
         },
         error => {
-          console.log('student service called error ' + JSON.stringify(error));  // start from here
-
-          // this.spinner.hide();
+          console.log('student service called error ' + JSON.stringify(error));
+          this.spinner.hide();
           // this.toastr.error('Error fetching Stocks');
         }
       )
 
   }
 
-  onDelete(){
-    console.log('delete button pressed');
+  onDelete(student) {
+
+    console.log('delete button pressed' + JSON.stringify(student));
+    const dialogRef = this.dialog.open(DeletePopupComponent, {
+      width: '450px',
+      data: {
+
+      }
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed ' + result);
+      if (result === 'Yes') {
+        console.log('yes');
+
+      } else {
+        console.log('no');
+
+      }
+    });
+
 
   }
 }

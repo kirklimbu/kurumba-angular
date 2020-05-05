@@ -10,11 +10,13 @@ export class DeletePopupComponent implements OnInit {
   title = 'Confirm Delete';
 
   message = 'Are you sure you want to remove this record?';
-  dialogRef;
+  // dialogRef;
 
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<DeletePopupComponent>,
+
   ) { }
 
 
@@ -23,25 +25,12 @@ ngOnInit(): void {
 
 
 close() {
-  // this.modal.close();
-
-  // tslint:disable-next-line: one-variable-per-declaration
-  this.dialogRef = this.dialog.open(DeletePopupComponent)
-  // {
-  //   // width:  '250px',
-  //   data: { }
-  // }
-
+  this.dialogRef.close();
 
 }
 
 dismiss() {
-  // this.modal.dismiss();
 
-  this.dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    // this.animal = result;
-  });
 }
 
 }
