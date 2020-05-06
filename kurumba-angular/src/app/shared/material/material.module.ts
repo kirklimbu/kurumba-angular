@@ -42,7 +42,8 @@ const material = [
   MatDividerModule,
   MatCheckboxModule,
   MatDialogModule,
-  MatGridListModule
+  MatGridListModule,
+
 ];
 @NgModule({
   exports: [material],

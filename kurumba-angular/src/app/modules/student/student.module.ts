@@ -8,6 +8,7 @@ import { StudentComponent } from './pages/student/student.component';
 import { ClassFormComponent } from './shared/class-form/class-form.component';
 import { ClassComponent } from './pages/class/class.component';
 import { StudentFormComponent } from './shared/student-form/student-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { StudentFormComponent } from './shared/student-form/student-form.compone
     CommonModule,
     StudentRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class StudentModule { }

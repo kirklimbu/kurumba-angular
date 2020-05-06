@@ -2,7 +2,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-form-group',
+  selector: 'kurumba-form-group',
   templateUrl: './form-group.component.html',
   styleUrls: ['./form-group.component.scss']
 })

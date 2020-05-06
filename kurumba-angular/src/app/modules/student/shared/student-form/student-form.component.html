@@ -1,4 +1,253 @@
-
 <kurumba-breadcrumb></kurumba-breadcrumb>
-<p>student-form works!</p>
 
+<!-- student form -->
+<form
+    novalidate
+    role="form"
+    [formGroup]="studentForm">
+  <fieldset class="scheduler-border">
+    <legend class="scheduler-border ml-2">{{ mode | titlecase }} Student Form</legend>
+
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <!--  name -->
+              <div class="col">
+
+                <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Name</mat-label>
+                      <input
+                        matInput
+                        type="text"
+                        id="name"
+                        name="name"
+                        (paste)="onPaste($event, 'alphaOnly')"
+                        (keypress)="validate($event, 'alphaOnly')"
+                        class="form-control"
+                        formControlName="name"
+                        required
+                        [class.is-valid]="studentForm.controls['name'].valid&& studentForm.controls['name'].touched"
+
+                        >
+                        <mat-hint>Enter student name.</mat-hint>
+                        <mat-error *ngIf="studentForm.controls['name'].errors &&
+                        (formSubmitted ||
+                          studentForm.controls['name'].touched ||
+                          studentForm.controls['name'].dirty)"></mat-error>
+                          <!-- <mat-error *ngIf="name.errors.required">Student name is required</mat-error>
+                          <mat-error *ngIf="name.errors.minLength">Enter proper name</mat-error>
+                          <mat-error *ngIf="name.errors.maxLength">Invalid student name</mat-error> -->
+                    </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!--/
+                 name -->
+
+              <!-- father name -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Father name</mat-label>
+                    <input
+                      matInput
+                      type="text"
+                      id="fatherName"
+                      name="fatherName"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="fatherName"
+                      required
+                      [class.is-valid]="studentForm.controls['fatherName'].valid&& studentForm.controls['fatherName'].touched"
+
+                      >
+                      <mat-hint>Enter student fatherName.</mat-hint>
+                      <mat-error *ngIf="studentForm.controls['fatherName'].errors &&
+                      (formSubmitted ||
+                        studentForm.controls['fatherName'].touched ||
+                        studentForm.controls['fatherName'].dirty)"></mat-error>
+                        <!-- <mat-error *ngIf="fatherName.errors.required">Student fatherName is required</mat-error>
+                        <mat-error *ngIf="fatherName.errors.minLength">Enter proper fatherName</mat-error>
+                        <mat-error *ngIf="fatherName.errors.maxLength">Invalid student fatherName</mat-error> -->
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!-- / father name -->
+
+              <!-- mother name -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Mother name</mat-label>
+                    <input
+                      matInput
+                      type="text"
+                      id="motherName"
+                      name="motherName"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="motherName"
+                      required
+                      [class.is-valid]="studentForm.controls['motherName'].valid&& studentForm.controls['motherName'].touched"
+
+                      >
+                      <mat-hint>Enter student motherName.</mat-hint>
+                      <mat-error *ngIf="studentForm.controls['motherName'].errors &&
+                      (formSubmitted ||
+                        studentForm.controls['motherName'].touched ||
+                        studentForm.controls['motherName'].dirty)"></mat-error>
+                        <!-- <mat-error *ngIf="motherName.errors.required">Student motherName is required</mat-error>
+                        <mat-error *ngIf="motherName.errors.minLength">Enter proper motherName</mat-error>
+                        <mat-error *ngIf="motherName.errors.maxLength">Invalid student motherName</mat-error> -->
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!-- / Mother name -->
+            </div>
+
+            <div class="row">
+              <!-- address -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Address</mat-label>
+                    <input
+                      matInput
+                      type="text"
+                      id="address"
+                      name="address"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="address"
+                      required
+                      [class.is-valid]="studentForm.controls['address'].valid&& studentForm.controls['address'].touched"
+
+                      >
+                      <mat-hint>Enter student address.</mat-hint>
+                      <mat-error *ngIf="studentForm.controls['address'].errors &&
+                      (formSubmitted ||
+                        studentForm.controls['address'].touched ||
+                        studentForm.controls['address'].dirty)"></mat-error>
+                        <!-- <mat-error *ngIf="address.errors.required">Student address is required</mat-error>
+                        <mat-error *ngIf="address.errors.minLength">Enter proper address</mat-error>
+                        <mat-error *ngIf="address.errors.maxLength">Invalid student address</mat-error> -->
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!-- / address -->
+
+              <!--  phone -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>phone No.</mat-label>
+                    <input
+                      matInput
+                      type="text"
+                      id="phoneNo"
+                      name="phoneNo"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="phoneNo"
+                      required
+                      [class.is-valid]="studentForm.controls['phoneNo'].valid&& studentForm.controls['phoneNo'].touched"
+                      >
+                      <mat-hint>Enter student phoneNo.</mat-hint>
+                      <mat-error *ngIf="studentForm.controls['phoneNo'].errors &&
+                      (formSubmitted ||
+                        studentForm.controls['phoneNo'].touched ||
+                        studentForm.controls['phoneNo'].dirty)"></mat-error>
+                        <!-- <mat-error *ngIf="phoneNo.errors.required">Student phoneNo is required</mat-error>
+                        <mat-error *ngIf="phoneNo.errors.minLength">Enter proper phoneNo</mat-error> -->
+                        <!-- <mat-error *ngIf="phoneNo.errors.maxLength">Invalid student phoneNo</mat-error> -->
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!-- /  phone -->
+
+              <!-- rollNo -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Roll No.</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      id="rollNo"
+                      name="rollNo"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="rollNo"
+                      required
+                      [class.is-valid]="studentForm.controls['rollNo'].valid&& studentForm.controls['rollNo'].touched"
+
+                      >
+                      <mat-hint>Enter student rollNo.</mat-hint>
+                      <mat-error *ngIf="studentForm.controls['rollNo'].errors &&
+                      (formSubmitted ||
+                        studentForm.controls['rollNo'].touched ||
+                        studentForm.controls['rollNo' ].dirty)"></mat-error>
+                        <!-- <mat-error *ngIf="rollNo.errors.required">Student rollNo is required</mat-error>
+                        <mat-error *ngIf="rollNo.errors.minLength">Enter proper rollNo</mat-error>
+                        <mat-error *ngIf="rollNo.errors.maxLength">Invalid student rollNo</mat-error> -->
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!-- /  rollNo -->
+            </div>
+
+               <!-- select class -->
+               <div class="row">
+                <div class="col-md-4">
+                  <kurumba-form-group>
+                  <mat-form-field
+                      class="example-full-width"
+                      >
+                    <mat-label>Class list</mat-label>
+                    <mat-select
+                    matInput
+                    id="className"
+                    formControlName="className"
+                    [class.is-valid]="studentForm.controls['className'].valid&& studentForm.controls['className'].touched"
+
+                    >
+                    <mat-option
+                    disabled> Select class</mat-option>
+                      <mat-option
+                          [value]="class.className"
+                          *ngFor="let class of classesList"  >{{class.className}}</mat-option>
+                    </mat-select>
+                    <mat-hint align="start">Select class</mat-hint>
+                  </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+              <!-- / select class -->
+
+
+            <mat-divider></mat-divider>
+            <!-- save cancel button -->
+          <div class="mt-3 mb-2 mr-3">
+            <kurumba-save-cancel-buttons
+              (save)="onSave('add')"
+              (cancel)="onCancel()"
+            >
+            </kurumba-save-cancel-buttons>
+          </div>
+          <!--/ save cancel button -->
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </fieldset>
+</form>

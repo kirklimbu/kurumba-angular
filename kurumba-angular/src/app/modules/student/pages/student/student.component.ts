@@ -33,9 +33,10 @@ export class StudentComponent implements OnInit {
   }
 
   studentForm(mode, id?) {
-    console.log('mode ' + mode + ' id: ' + id);
+    console.log('mode ' + mode + ' id: ');
 
-    const link: any = mode === 'add' ? 'addStudent' : 'editStudent/' + id;
+    const link: any = mode === 'add' ? 'addStudent' : 'editStudent' + { queryParams: { studentId: id } };
+    // const link: any = mode === 'add' ? 'addStudent' : 'editStudent?studentId=' + id;
     this.router.navigate([link], { relativeTo: this.route });
 
 
