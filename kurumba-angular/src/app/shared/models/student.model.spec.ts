@@ -1,7 +1,7 @@
-import { Student } from './student.model';
+import { Students } from './student.model';
 
-describe('Student', () => {
+describe('Students', () => {
   it('should create an instance', () => {
-    expect(new Student()).toBeTruthy();
+    expect(new Students()).toBeTruthy();
   });
 });

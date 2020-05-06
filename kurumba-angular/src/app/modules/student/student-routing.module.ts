@@ -21,7 +21,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'editStudent/:',
+    path: 'editStudent?studentId=',
     component: StudentFormComponent,
     data: {
       breadcrumb: ' Edit student'

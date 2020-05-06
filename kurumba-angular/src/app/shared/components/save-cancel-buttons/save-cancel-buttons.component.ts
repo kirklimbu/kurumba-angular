@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-save-cancel-buttons',
+  selector: 'kurumba-save-cancel-buttons',
   templateUrl: './save-cancel-buttons.component.html',
   styleUrls: ['./save-cancel-buttons.component.scss']
 })
@@ -16,5 +16,7 @@ export class SaveCancelButtonsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  
 
 }
