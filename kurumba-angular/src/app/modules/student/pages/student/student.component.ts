@@ -29,18 +29,19 @@ export class StudentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.fetchAllStudents();
   }
 
   studentForm(mode, id?) {
-    console.log('mode ' + mode + ' id: ');
 
-    const link: any = mode === 'add' ? 'addStudent' : 'editStudent' + { queryParams: { studentId: id } };
-    // const link: any = mode === 'add' ? 'addStudent' : 'editStudent?studentId=' + id;
-    this.router.navigate([link], { relativeTo: this.route });
+    console.log('form_mode ' + mode + ' form_id ' + id);
+    const link: any = mode === 'add' ? 'addStudent' : 'editStudent/';
+    this.router.navigate([link], { relativeTo: this.route, queryParams: { studentId: id } });
 
 
   }
+
 
   onSearch() {
 
@@ -54,7 +55,11 @@ export class StudentComponent implements OnInit {
       .subscribe(
         data => {
           this.spinner.hide();
+          console.log('student list '+JSON.stringify(data));
+
           this.studentListDataSource = new MatTableDataSource(data);
+          console.log('student table list data '+JSON.stringify(this.studentListDataSource));
+
         },
         error => {
           console.log('student service called error ' + JSON.stringify(error));

@@ -1,3 +1,4 @@
+// import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { NgModule } from '@angular/core';
 
 import { MatInputModule } from '@angular/material/input';
@@ -18,8 +19,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
 
 
 const material = [
@@ -35,6 +39,8 @@ const material = [
   MatSidenavModule,
   MatListModule,
   MatDatepickerModule,
+  // MatMomentDateModule,
+  MatNativeDateModule,
   MatTooltipModule,
   MatSelectModule,
   MatPaginatorModule,

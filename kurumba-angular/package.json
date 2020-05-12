@@ -25,6 +25,7 @@
     "@fortawesome/angular-fontawesome": "^0.6.1",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "angular-crumbs": "^3.0.1",
+    "angular-nepali-datepicker": "^0.1.4",
     "bootstrap": "^4.4.0",
     "font-awesome": "^4.7.0",
     "ngx-spinner": "^9.0.2",

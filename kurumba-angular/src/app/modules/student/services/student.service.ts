@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Student } from 'src/app/shared/models/student.model';
+import { Classes } from 'src/app/shared/models/classes.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +58,7 @@ export class StudentService {
 
     return (
       this.http
-        .post('/createstudent', { ...student })
+        .post(`${this.API_URL}/createstudent`, { ...student })
       // .pipe(
       //   catchError(err => {
       //     return Observable.throw(err);
@@ -66,16 +68,20 @@ export class StudentService {
   }
 
   getStudentById(id): any {
-    console.log(' service ma gako id ' +id);
+    // let params = new HttpParams().set('studentId', id);
+
+    console.log(' service ma gako id: ' + id);
 
     return (
       this.http
-        .get(`/studentId?studentId=`, {
-          params: {
-            studentId: id
-            // id: id
-          },
-        })
+        .get(`${this.API_URL}/studentId?studentId=${id}`)
+      // ,{params:params})
+      // {
+      // params: {
+      //   studentId: id
+      //   // id: id
+      // },
+      // })
       // .pipe(
       //   catchError(err => {
       //     return Observable.throw(err);
@@ -83,6 +89,21 @@ export class StudentService {
       // )
     );
   }
+
+
+  saveClass(classx : Classes): any {
+  console.log('CLASS save service' + JSON.stringify(classx));
+
+  return (
+    this.http
+      .post(`${this.API_URL}/create/class`, { ...classx })
+    // .pipe(
+    //   catchError(err => {
+    //     return Observable.throw(err);
+    //   })
+    // )
+  );
+}
 
 }
 

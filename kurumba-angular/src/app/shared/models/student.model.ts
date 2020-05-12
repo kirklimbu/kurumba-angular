@@ -19,4 +19,9 @@ export class Student {
 
   classx: Classes;
   marksList: Marks[] = [];
+
+  constructor() {
+    this.marksList = [];
+
+  }
 }

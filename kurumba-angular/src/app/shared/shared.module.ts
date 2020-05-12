@@ -21,6 +21,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BreadcrumbModule } from 'angular-crumbs';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+// import { NpDatepickerModule } from 'angular-nepali-datepicker';
 
 
 
@@ -38,6 +39,7 @@ const DECLARATIONS: any[] = [
   ConstantsComponent,
   SubMenuFilterPipe,
   BreadcrumbComponent,
+  // NpDatepickerModule
   // MaterialModule
 
 
