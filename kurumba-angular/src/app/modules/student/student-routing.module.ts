@@ -21,17 +21,19 @@ const routes: Routes = [
 
   },
   {
-    path: 'editStudent?studentId=',
+    // path: 'editStudent/:id',
+    path: 'editStudent',
     component: StudentFormComponent,
     data: {
-      breadcrumb: ' Edit student'
+      breadcrumb: 'Edit student'
     }
   },
+
   {
     path: 'class',
     component: ClassComponent,
     data: {
-      breadcrumb: ' '
+      breadcrumb: ''
     }
 
   },

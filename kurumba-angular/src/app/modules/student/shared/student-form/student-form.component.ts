@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StudentService } from './../../services/student.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/shared/models/student.model';
 import { CheckPattern } from 'src/app/shared/constants/check-pattern.model';
@@ -20,10 +20,11 @@ export class StudentFormComponent implements OnInit {
   checkPattern: CheckPattern = new CheckPattern();
   studentForm: FormGroup;
   student = new Student();
+  class = new Classes();
   formSubmitted = true;
   classesList;
   studentId: number;
-  mode;
+  mode = 'add';
 
   constructor(
     private fb: FormBuilder,
@@ -38,16 +39,24 @@ export class StudentFormComponent implements OnInit {
   ngOnInit(): void {
     // this.buildStudentForm();
 
-    this.route.queryParams
-      // .filter(params=> params.studentId)
-      .subscribe(params => {
-        console.log('paramas id ' + params);
+    // this.route.queryParams
+    // .filter(params=> params.studentId)
+    // .subscribe(params => {
+    // console.log('paramas id ' + params);
 
-        // const userId = params['studentId'];
+    // const userId = params['studentId'];
 
-        const id = params.studentId;
-        console.log('query paramas id ' + id);
-      });
+    // const id = params.studentId;
+    // console.log('query paramas id ' + id);
+    // });
+
+    // this.route.queryParams.subscribe(
+    //   params => {
+    //     console.log('paramQuery ' + JSON.stringify(params));
+    //     console.log('paramQuery NOT STRINGIFY' + params);
+
+    //   }
+    // )
 
 
 
@@ -55,13 +64,15 @@ export class StudentFormComponent implements OnInit {
 
     this.fetchAllClasses();
     this.getParamsFromUrl();
+    this.buildStudentForm();
   }
 
   getParamsFromUrl() {
 
-    this.route.params.subscribe(params => {
-      this.studentId = (params.id);
-      console.log('param student id ' + this.studentId);  // start from here queryParam
+    this.route.queryParams.subscribe(params => {
+      console.log('query param value ' + JSON.stringify(params));
+
+      this.studentId = (params.studentId);
 
       if (this.studentId != null && this.studentId) {
         this.mode = 'edit';
@@ -70,15 +81,21 @@ export class StudentFormComponent implements OnInit {
           .pipe(finalize(() => this.spinner.hide()))
           .subscribe(
             data => {
-              this.classesList = data;
+              console.log('callig edit build form');
+              this.student = data;
               this.buildStudentForm();
+
             },
             err => {
+              console.log('server error ' + JSON.stringify(err));
+
               // this.toastr.error('Unable to Fetch SIM Detail.');
             }
           );
 
       } else {
+        console.log('inside else block build ' + this.mode);
+
         this.buildStudentForm();
       }
     });
@@ -97,7 +114,8 @@ export class StudentFormComponent implements OnInit {
         phoneNo: [this.student.phoneNo, [Validators.required, Validators.minLength(10)]],
         rollNo: [this.student.rollNo, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
         dob: [this.student.dob, [Validators.required]],
-        className: [this.student.classx, [Validators.required]],
+        classx: this.fb.array([this.buildClassForm()]),
+
       });
     } else {
       this.studentForm = this.fb.group({
@@ -109,9 +127,30 @@ export class StudentFormComponent implements OnInit {
         phoneNo: [this.student.phoneNo, [Validators.required, Validators.minLength(10)]],
         rollNo: [this.student.rollNo, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
         dob: [this.student.dob, [Validators.required]],
-        className: [this.student.classx, [Validators.required]],
+        classx: this.fb.array([]),
       });
+      // this.setclassx();
     }
+  }
+
+  buildClassForm() {
+    return this.fb.group({
+      classId: [this.class.className],
+      className: [this.class.className, [Validators.required]],
+
+    });
+
+  }
+
+  // setclassx() {
+  //   let control = <FormArray>this.studentForm.controls.classx;
+  //   this.class.classx.forEach(x => {
+  //     control.push(this.fb.group(x));
+  //   })
+  // }
+
+  get classx() {
+    return this.studentForm.get('classx')['controls'];
   }
 
 
@@ -129,8 +168,6 @@ export class StudentFormComponent implements OnInit {
     return this.studentForm.controls.rollNo;
   } get dob() {
     return this.studentForm.controls.dob;
-  } get className() {
-    return this.studentForm.controls.className;
   }
 
 
@@ -150,7 +187,10 @@ export class StudentFormComponent implements OnInit {
       )
   }
 
-  onSave(mode, id?) {
+  onSave(mode) {
+    console.log('save method called ');
+    console.log('student value ' + JSON.stringify(this.studentForm.value));
+
     this.formSubmitted = true;
     if (this.studentForm.valid) {
       this.spinner.show();
@@ -165,15 +205,18 @@ export class StudentFormComponent implements OnInit {
               this.router.navigate(['../'], { relativeTo: this.route });
             },
             err => {
-              if (err.error.errors[0].defaultMessage) {
-                // this.toastr.error(err.error.errors[0].defaultMessage);
-              } else {
-                // this.toastr.error('Error adding Tracker details.');
-              }
+              console.log('save server error' + JSON.stringify(err));
+
+              // if (err.error.errors[0].defaultMessage) {
+              // this.toastr.error(err.error.errors[0].defaultMessage);
             }
+            // else {
+            // this.toastr.error('Error adding Tracker details.');
+            // }
+            // }
           );
       } else {
-        console.log('uupdate block');
+        console.log('update block');
 
       }
 
@@ -188,6 +231,7 @@ export class StudentFormComponent implements OnInit {
     this.router.navigate([link], { relativeTo: this.route });
   }
 
+  // input copy/ paste validation
   validate(event, type?: string): any {
 
     if (this.onTypeValidateService.validate(event, type))

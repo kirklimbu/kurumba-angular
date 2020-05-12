@@ -7,4 +7,9 @@ export class Classes {
   className: string;
   section: Section;
   subjectCollection: Subject[] = [];
+
+
+  constructor(){
+    this.subjectCollection=[]
+  }
 }
