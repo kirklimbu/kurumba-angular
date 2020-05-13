@@ -33,12 +33,12 @@ const routes: Routes = [
     path: 'class',
     component: ClassComponent,
     data: {
-      breadcrumb: ''
+      breadcrumb: 'Class'
     }
 
   },
   {
-    path: 'addClass',
+    path: 'class/addClass',
     component: ClassFormComponent,
     data: {
       breadcrumb: 'Add class '

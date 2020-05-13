@@ -19,6 +19,7 @@ export class StudentFormComponent implements OnInit {
 
   checkPattern: CheckPattern = new CheckPattern();
   studentForm: FormGroup;
+  classForm: FormGroup;
   student = new Student();
   class = new Classes();
   formSubmitted = true;
@@ -37,30 +38,6 @@ export class StudentFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.buildStudentForm();
-
-    // this.route.queryParams
-    // .filter(params=> params.studentId)
-    // .subscribe(params => {
-    // console.log('paramas id ' + params);
-
-    // const userId = params['studentId'];
-
-    // const id = params.studentId;
-    // console.log('query paramas id ' + id);
-    // });
-
-    // this.route.queryParams.subscribe(
-    //   params => {
-    //     console.log('paramQuery ' + JSON.stringify(params));
-    //     console.log('paramQuery NOT STRINGIFY' + params);
-
-    //   }
-    // )
-
-
-
-
 
     this.fetchAllClasses();
     this.getParamsFromUrl();
@@ -103,71 +80,57 @@ export class StudentFormComponent implements OnInit {
 
 
   buildStudentForm() {
+    console.log('student build form called');
 
-    if (this.mode === 'add') {
-      this.studentForm = this.fb.group({
-        studentId: this.student.studentId,
-        name: [this.student.name, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        fatherName: [this.student.fatherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        motherName: [this.student.motherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        address: [this.student.address, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        phoneNo: [this.student.phoneNo, [Validators.required, Validators.minLength(10)]],
-        rollNo: [this.student.rollNo, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-        dob: [this.student.dob, [Validators.required]],
-        classx: this.fb.array([this.buildClassForm()]),
-
-      });
-    } else {
-      this.studentForm = this.fb.group({
-        studentId: this.student.studentId,
-        name: [this.student.name, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        fatherName: [this.student.fatherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        motherName: [this.student.motherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        address: [this.student.address, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
-        phoneNo: [this.student.phoneNo, [Validators.required, Validators.minLength(10)]],
-        rollNo: [this.student.rollNo, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-        dob: [this.student.dob, [Validators.required]],
-        classx: this.fb.array([]),
-      });
-      // this.setclassx();
-    }
-  }
-
-  buildClassForm() {
-    return this.fb.group({
-      classId: [this.class.className],
-      className: [this.class.className, [Validators.required]],
-
+    this.classForm = this.fb.group({
+      classId: [this.class.classId],
+      className: [this.class.className, [Validators.required]]
     });
 
-  }
+    this.studentForm = this.fb.group({
+      studentId: this.student.studentId,
+      name: [this.student.name, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      fatherName: [this.student.fatherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      motherName: [this.student.motherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      address: [this.student.address, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+      phoneNo: [this.student.phoneNo, [Validators.required, Validators.minLength(10)]],
+      rollNo: [this.student.rollNo, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      dob: [this.student.dob, [Validators.required]],
+      classx: this.classForm,
+    });
 
-  // setclassx() {
-  //   let control = <FormArray>this.studentForm.controls.classx;
-  //   this.class.classx.forEach(x => {
-  //     control.push(this.fb.group(x));
-  //   })
-  // }
-
-  get classx() {
-    return this.studentForm.get('classx')['controls'];
   }
 
 
   get name() {
     return this.studentForm.controls.name;
-  } get fatherName() {
+  }
+
+  get fatherName() {
     return this.studentForm.controls.fatherName;
-  } get motherName() {
+  }
+
+  get motherName() {
     return this.studentForm.controls.motherName;
-  } get address() {
+  }
+
+  get address() {
     return this.studentForm.controls.address;
-  } get phoneNo() {
+  }
+
+  get phoneNo() {
     return this.studentForm.controls.phoneNo;
-  } get rollNo() {
+  }
+
+  get rollNo() {
     return this.studentForm.controls.rollNo;
-  } get dob() {
+  }
+
+  get dob() {
     return this.studentForm.controls.dob;
+  }
+  get className() {
+    return this.classForm.controls.className;
   }
 
 
@@ -194,35 +157,30 @@ export class StudentFormComponent implements OnInit {
     this.formSubmitted = true;
     if (this.studentForm.valid) {
       this.spinner.show();
-      if (mode === 'add') {
+      console.log('student form values ' + this.studentForm.value);
+      this.studentService.saveStudent(this.studentForm.value)
+        .pipe(finalize(() => this.spinner.hide()))
+        .subscribe(
+          res => {
+            // this.toastr.success('Tracker SuccessFully Created.');
+            this.router.navigate(['../'], { relativeTo: this.route });
+          },
+          err => {
+            console.log('save server error' + JSON.stringify(err));
 
-        console.log('student form values ' + this.studentForm.value);
-        this.studentService.saveStudent(this.studentForm.value)
-          .pipe(finalize(() => this.spinner.hide()))
-          .subscribe(
-            res => {
-              // this.toastr.success('Tracker SuccessFully Created.');
-              this.router.navigate(['../'], { relativeTo: this.route });
-            },
-            err => {
-              console.log('save server error' + JSON.stringify(err));
+            // if (err.error.errors[0].defaultMessage) {
+            // this.toastr.error(err.error.errors[0].defaultMessage);
+          }
+          // else {
+          // this.toastr.error('Error adding Tracker details.');
+          // }
+          // }
+        );
 
-              // if (err.error.errors[0].defaultMessage) {
-              // this.toastr.error(err.error.errors[0].defaultMessage);
-            }
-            // else {
-            // this.toastr.error('Error adding Tracker details.');
-            // }
-            // }
-          );
-      } else {
-        console.log('update block');
-
-      }
+    } else {
+      console.log('invalid form');
 
     }
-
-
   }
 
   onCancel() {
@@ -245,6 +203,60 @@ export class StudentFormComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+
+  // error message block
+  getNameErrorMessage() {
+    return this.studentForm.controls['name'].hasError('required') ? 'Student name is required' :
+      this.studentForm.controls['name'].hasError('maxLength') ? 'Invalid name' :
+        this.studentForm.controls['name'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
+  }
+  getfatherNameErrorMessage() {
+    return this.studentForm.controls['fatherName'].hasError('required') ? 'Student fatherName is required' :
+      this.studentForm.controls['fatherName'].hasError('maxLength') ? 'Invalid fatherName' :
+        this.studentForm.controls['fatherName'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
+  }
+  getmotherNameErrorMessage() {
+    return this.studentForm.controls['motherName'].hasError('required') ? 'Student motherName is required' :
+      this.studentForm.controls['motherName'].hasError('maxLength') ? 'Invalid motherName' :
+        this.studentForm.controls['motherName'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
+  }
+  getaddressErrorMessage() {
+    return this.studentForm.controls['address'].hasError('required') ? 'Student address is required' :
+      this.studentForm.controls['address'].hasError('maxLength') ? 'Invalid address' :
+        this.studentForm.controls['address'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
+  }
+  getphoneErrorMessage() {
+    return this.studentForm.controls['phoneNo'].hasError('required') ? 'Student phoneNo is required' :
+      this.studentForm.controls['phoneNo'].hasError('maxLength') ? 'Invalid phoneNo' :
+        this.studentForm.controls['phoneNo'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
+  }
+
+  getrollNoErrorMessage() {
+    return this.studentForm.controls['rollNo'].hasError('required') ? 'Student rollNo is required' :
+      this.studentForm.controls['rollNo'].hasError('maxLength') ? 'Invalid rollNo' :
+        this.studentForm.controls['rollNo'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
+  }
+
+getDobErrorMessage() {
+    return this.studentForm.controls['dob'].hasError('required') ? 'Student dob is required' :
+      this.studentForm.controls['dob'].hasError('maxLength') ? 'Invalid dob' :
+        this.studentForm.controls['dob'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
+  }
+
+getClassErrorMessage() {
+    return this.classForm.controls['className'].hasError('required') ? 'Student class is required' :
+      this.classForm.controls['className'].hasError('maxLength') ? 'Invalid className' :
+        this.classForm.controls['className'].hasError('minlength') ? 'Required length is at least 2 characters' :
+          '';
   }
 
 }
