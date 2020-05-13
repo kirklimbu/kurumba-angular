@@ -7,6 +7,7 @@ import { Subject } from 'src/app/shared/models/subject.model';
 import { StudentService } from '../../services/student.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-class-form',
@@ -19,7 +20,9 @@ export class ClassFormComponent implements OnInit {
   subject: Subject = new Subject();
   classForm: FormGroup;
   formSubmitted: true;
+  getErrorMessage:string='';
   mode = '';
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -64,7 +67,9 @@ export class ClassFormComponent implements OnInit {
     })
   }
 
-
+  get subjectName() {
+    return this.classForm.controls.subject;
+  }
   addSubject() {
     this.subjectCollection().push(this.buildSubjectForm());
   }
@@ -74,30 +79,30 @@ export class ClassFormComponent implements OnInit {
   }
 
   onSave() {
-    this.formSubmitted= true;
+    this.formSubmitted = true;
     this.spinner.show();
 
-    console.log('class form values '+ JSON.stringify(this.classForm.value));
+    console.log('class form values ' + JSON.stringify(this.classForm.value));
     if (this.classForm.valid) {
 
       this.studentService.saveClass(this.classForm.value)
-      .pipe(finalize(() => this.spinner.hide()))
-          .subscribe(
-            res => {
-              // this.toastr.success('Tracker SuccessFully Created.');
-              this.router.navigate(['../'], { relativeTo: this.route });
-            },
-            err => {
-              console.log('save server error' + JSON.stringify(err));
+        .pipe(finalize(() => this.spinner.hide()))
+        .subscribe(
+          res => {
+            // this.toastr.success('Tracker SuccessFully Created.');
+            this.router.navigate(['../'], { relativeTo: this.route });
+          },
+          err => {
+            console.log('save server error' + JSON.stringify(err));
 
-              // if (err.error.errors[0].defaultMessage) {
-              // this.toastr.error(err.error.errors[0].defaultMessage);
-            }
-            // else {
-            // this.toastr.error('Error adding Tracker details.');
-            // }
-            // }
-          );
+            // if (err.error.errors[0].defaultMessage) {
+            // this.toastr.error(err.error.errors[0].defaultMessage);
+          }
+          // else {
+          // this.toastr.error('Error adding Tracker details.');
+          // }
+          // }
+        );
     }
 
   }
