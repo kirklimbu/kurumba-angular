@@ -44,7 +44,7 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
   },
   {
     label: 'DLE/SEE',
-    link: '../exam/external',
+    link: '../exam/dle-see',
     icon: 'fas fa-database',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Exam'],
