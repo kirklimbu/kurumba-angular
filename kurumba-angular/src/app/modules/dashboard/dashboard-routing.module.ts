@@ -39,6 +39,10 @@ const routes: Routes = [
         },
         // canActivate: [UserRoleGuard]
 
+      },
+      {
+        path: 'exam',
+        loadChildren: () => import('./../exam/exam.module').then(m => m.ExamModule),
       }
     ]
   },

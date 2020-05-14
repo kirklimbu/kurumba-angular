@@ -1,0 +1,164 @@
+<kurumba-breadcrumb></kurumba-breadcrumb>
+
+<!-- student form -->
+<form novalidate role="form" [formGroup]="examForm">
+  <fieldset class="scheduler-border">
+    <legend class="scheduler-border ml-2">
+      Exam Form
+    </legend>
+
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <mat-card class="example-card">
+          <mat-card-header> </mat-card-header>
+          <mat-card-content>
+            <!-- year -->
+            <form novalidate role="form" [formGroup]="yearForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select year:</mat-label>
+                      <mat-select
+                        matInput
+                        id="year"
+                        formControlName="year"
+                        required
+                        [class.is-valid]="
+                          yearForm.controls['year'].valid &&
+                          yearForm.controls['year'].touched
+                        "
+                      >
+                        <mat-option disabled> Select Year</mat-option>
+                        <mat-option
+                          [value]="year.yearId"
+                          *ngFor="let year of yearList"
+                          >{{ year.year }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select academic year</mat-hint>
+                      <mat-error *ngIf="yearForm.controls['year'].invalid">{{
+                        getYearErrorMessage()
+                      }}</mat-error>
+                    </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+            </form>
+            <!-- / year -->
+
+            <!-- terminal -->
+            <form novalidate role="form" [formGroup]="terminalForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select terminal:</mat-label>
+                      <mat-select
+                        matInput
+                        id="terminal"
+                        formControlName="terminal"
+                        required
+                        [class.is-valid]="
+                          terminalForm.controls['terminal'].valid &&
+                          terminalForm.controls['terminal'].touched
+                        "
+                      >
+                        <mat-option disabled> Select terminal</mat-option>
+                        <mat-option
+                          [value]="terminal.terminalId"
+                          *ngFor="let terminal of terminalList"
+                          >{{ terminal.terminal }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select terminal</mat-hint>
+                      <mat-error
+                        *ngIf="terminalForm.controls['terminal'].invalid"
+                        >{{ getTerminalErrorMessage() }}</mat-error
+                      >
+                    </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+            </form>
+            <!-- / terminal -->
+
+            <!-- class -->
+            <form novalidate role="form" [formGroup]="classForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select class:</mat-label>
+                      <mat-select
+                        matInput
+                        id="className"
+                        formControlName="className"
+                        required
+                        [class.is-valid]="
+                          classForm.controls['className'].valid &&
+                          classForm.controls['className'].touched
+                        "
+                        (selectionChange)="selectClass($event)"
+
+                      >
+                        <mat-option disabled> Select class</mat-option>
+                        <mat-option
+                          [value]="class.classId"
+                          *ngFor="let class of classList"
+                          >{{ class.className }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select class</mat-hint>
+                      <mat-error
+                        *ngIf="classForm.controls['className'].invalid"
+                        >{{ getClassErrorMessage() }}</mat-error
+                      >
+                    </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+            </form>
+            <!-- / class -->
+
+            <!-- student -->
+            <form novalidate role="form" [formGroup]="studentForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select student:</mat-label>
+                      <mat-select
+                        matInput
+                        id="studentName"
+                        formControlName="studentName"
+                        required
+                        [class.is-valid]="
+                          studentForm.controls['studentName'].valid &&
+                          studentForm.controls['studentName'].touched
+                        "
+                      >
+                        <mat-option disabled> Select class</mat-option>
+                        <mat-option
+                          [value]="student.studentId"
+                          *ngFor="let student of studentList"
+                          >{{ student.name }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select class</mat-hint>
+                      <mat-error
+                        *ngIf="studentForm.controls['studentName'].invalid"
+                        >{{ getStudentErrorMessage() }}</mat-error
+                      >
+                    </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+            </form>
+            <!-- / class -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </fieldset>
+</form>
