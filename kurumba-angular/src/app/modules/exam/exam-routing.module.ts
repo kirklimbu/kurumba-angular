@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: '',
     component: ExamComponent,
-  }, {
+  },
+   {
     path: 'internal',
     component: InternalComponent,
     data: {

@@ -55,10 +55,10 @@ export class StudentComponent implements OnInit {
       .subscribe(
         data => {
           this.spinner.hide();
-          console.log('student list '+JSON.stringify(data));
+          console.log('student list ' + JSON.stringify(data));
 
           this.studentListDataSource = new MatTableDataSource(data);
-          console.log('student table list data '+JSON.stringify(this.studentListDataSource));
+          console.log('student table list data ' + (this.studentListDataSource));
 
         },
         error => {

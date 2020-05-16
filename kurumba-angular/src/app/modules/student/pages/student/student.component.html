@@ -43,7 +43,7 @@
             *matHeaderCellDef>Class</th>
         <td
             mat-cell
-            *matCellDef="let element">{{ element.classx }}</td>
+            *matCellDef="let element">{{ element.classx.className }}</td>
       </ng-container>
 
       <!-- Rollno Column -->
@@ -108,7 +108,7 @@
         <td
             mat-cell
             *matCellDef="let element">
-          {{ element.dob }}
+          {{ element.dob | date}}
         </td> </ng-container>
 
          <!-- Action Column -->
