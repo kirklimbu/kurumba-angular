@@ -1,4 +1,10 @@
 <kurumba-breadcrumb></kurumba-breadcrumb>
+<kurumba-list-page-template
+  [enableActiveLink]="true"
+  [enableAdd]="false"
+  [enableSearch]="false"
+>
+</kurumba-list-page-template>
 
 <!-- student form -->
 <form novalidate role="form" [formGroup]="examForm">
@@ -100,7 +106,6 @@
                           classForm.controls['className'].touched
                         "
                         (selectionChange)="selectClass($event)"
-
                       >
                         <mat-option disabled> Select class</mat-option>
                         <mat-option
@@ -151,6 +156,27 @@
                         >{{ getStudentErrorMessage() }}</mat-error
                       >
                     </mat-form-field>
+                    <ng-container
+                      class="marks-container"
+                      *ngIf="classList"
+                        >
+                      <table class="table table-bordered table-responsive">
+                        <tr class="text-center">
+                          <th>Subject:</th>
+                          <th>Practical marks:</th>
+                          <th>Theory marks:</th>
+                        </tr>
+
+                        <tr>
+                          <td *ngFor="let class of classList">{{class.className}}:</td>
+
+                          <td><input type="text" class="form-control" /></td>
+                          <td>
+                            <input type="text" class="form-control" />
+                          </td>
+                        </tr>
+                      </table>
+                    </ng-container>
                   </kurumba-form-group>
                 </div>
               </div>

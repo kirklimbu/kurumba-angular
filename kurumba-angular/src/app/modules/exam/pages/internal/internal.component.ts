@@ -117,7 +117,6 @@ export class InternalComponent implements OnInit {
 
         }, err => {
           console.error('server response error ' + JSON.stringify(err));
-
         }
       )
 

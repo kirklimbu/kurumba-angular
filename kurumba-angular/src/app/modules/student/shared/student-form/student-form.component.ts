@@ -84,11 +84,11 @@ export class StudentFormComponent implements OnInit {
 
     this.classForm = this.fb.group({
       classId: [this.class.classId],
-      className: [this.class.className, [Validators.required]]
+      // className: [this.class.className, [Validators.required]]
     });
 
     this.studentForm = this.fb.group({
-      studentId: this.student.studentId,
+      studentId: [this.student.studentId],
       name: [this.student.name, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       fatherName: [this.student.fatherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       motherName: [this.student.motherName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
@@ -130,7 +130,7 @@ export class StudentFormComponent implements OnInit {
     return this.studentForm.controls.dob;
   }
   get className() {
-    return this.classForm.controls.className;
+    return this.classForm.controls.classId;
   }
 
 
@@ -253,9 +253,9 @@ getDobErrorMessage() {
   }
 
 getClassErrorMessage() {
-    return this.classForm.controls['className'].hasError('required') ? 'Student class is required' :
-      this.classForm.controls['className'].hasError('maxLength') ? 'Invalid className' :
-        this.classForm.controls['className'].hasError('minlength') ? 'Required length is at least 2 characters' :
+    return this.classForm.controls['classId'].hasError('required') ? 'Student class is required' :
+      this.classForm.controls['classId'].hasError('maxLength') ? 'Invalid classId' :
+        this.classForm.controls['classId'].hasError('minlength') ? 'Required length is at least 2 characters' :
           '';
   }
 

@@ -229,24 +229,24 @@
                       <mat-label>Class list</mat-label>
                       <mat-select
                         matInput
-                        id="className"
-                        formControlName="className"
+                        id="classId"
+                        formControlName="classId"
                         required
                         [class.is-valid]="
-                        classForm.controls['className'].valid &&
-                        classForm.controls['className'].touched
+                        classForm.controls['classId'].valid &&
+                        classForm.controls['classId'].touched
                       "
                       >
                         <mat-option disabled> Select class</mat-option>
                         <mat-option
-                          [value]="class.className"
+                          [value]="class.classId"
                           *ngFor="let class of classesList"
                           >{{ class.className }}</mat-option
                         >
                       </mat-select>
                       <mat-hint align="start">Select class</mat-hint>
                       <mat-error
-                    *ngIf="classForm.controls['className'].invalid"
+                    *ngIf="classForm.controls['classId'].invalid"
                     >{{ getClassErrorMessage() }}</mat-error
                   >
                     </mat-form-field>
