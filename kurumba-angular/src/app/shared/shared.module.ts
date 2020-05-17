@@ -21,6 +21,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BreadcrumbModule } from 'angular-crumbs';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 // import { NpDatepickerModule } from 'angular-nepali-datepicker';
 
 
@@ -60,6 +62,7 @@ const DECLARATIONS: any[] = [
     NgxSpinnerModule,
     // NgSelectModule,
     RouterModule,
+    FontAwesomeModule,
     // WizardModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
@@ -69,7 +72,7 @@ const DECLARATIONS: any[] = [
       autoDismiss: true,
       closeButton: true,
       progressBar: true,
-      progressAnimation:'increasing'
+      progressAnimation: 'increasing'
 
     }),
   ],

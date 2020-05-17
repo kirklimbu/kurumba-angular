@@ -31,7 +31,7 @@ export class InternalComponent implements OnInit {
   marks: Marks = new Marks();
   student: Student = new Student();
   class: Classes = new Classes();
-  subject: Subject = new Subject();
+  subjectx: Subject = new Subject();
   terminal: Terminal = new Terminal();
   classxId: number;
 
@@ -66,13 +66,20 @@ export class InternalComponent implements OnInit {
         studentId: this.student.studentId,
         studentName: [this.student.name, [Validators.required]],
       }),
+      this.subjectForm = this.fb.group({
+        subjectId: [this.subjectx.subjectId],
+        subject: [this.subjectx.subject],
+        // fmPractical: [this.subjectx.fmPractical, [Validators.required]],
+        // fmTheory: [this.subjectx.fmTheory, [Validators.required]],
+      }),
 
       this.marksForm = this.fb.group({
         marksId: this.marks.marksId,
-        gradePoint: [this.marks.gradePoint, [Validators.required]],
-        prGrade: [this.marks.prGrade, [Validators.required]],
-        prMarks: [this.marks.prMarks, [Validators.required]],
-      })
+        prMarks: [this.marks.prMarks,],
+        thMarks: [this.marks.thMarks, [Validators.required]],
+        // totalMarks: [this.marks.totalMarks, [Validators.required]],
+        subjectList: [this.subjectForm]
+      });
   }
 
 
@@ -94,8 +101,8 @@ export class InternalComponent implements OnInit {
   fetchAllTerminals() {
     this.examService.getAllTerminals()
       .subscribe(
-        classes => {
-          this.terminalList = classes;
+        terminals => {
+          this.terminalList = terminals;
           console.log('terminal list ' + JSON.stringify(this.terminalList));
 
         }, err => {
