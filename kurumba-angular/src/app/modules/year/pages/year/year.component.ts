@@ -33,6 +33,7 @@ export class YearComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    this.fetchYearsList();
   }
 
 
@@ -98,6 +99,22 @@ export class YearComponent implements OnInit {
 
     this.router.navigate(['../'], { relativeTo: this.route });
 
+  }
+
+  fetchYearsList() {
+   return this.yearService.getAllYears()
+      .subscribe(
+        years => {
+          console.log('yerai list ' + JSON.stringify(years));
+
+          this.yearListDataSource = new MatTableDataSource(years);
+        },
+        err => {
+          console.log('save server error' + JSON.stringify(err));
+
+          // if (err.error.errors[0].defaultMessage) {
+          // this.toastr.error(err.error.errors[0].defaultMessage);
+        })
   }
 
 }

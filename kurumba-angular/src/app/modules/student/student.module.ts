@@ -10,7 +10,7 @@ import { ClassComponent } from './pages/class/class.component';
 import { StudentFormComponent } from './shared/student-form/student-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { NpDatepickerModule } from 'angular-nepali-datepicker';
-
+//
 
 
 @NgModule({

@@ -1,76 +1,71 @@
-<ng-container>
-  <!-- grid row -->
-  <!-- grid col 1 -->
-  <div class="row">
-    <div
-        class="col"
-        *ngFor="let item of sidebarItems"
-        [hidden]="item.hideTile">
-      <mat-card>
-        <mat-card-header>
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title>{{ item.label }}</mat-card-title>
-          <mat-card-subtitle>For {{item.label}} related tasks </mat-card-subtitle>
-          <mat-icon
-              style="color: black;"
-              class="fas"
-              [ngClass]="item.icon">
-          </mat-icon>
-        </mat-card-header>
-        <mat-card-content> </mat-card-content>
-        <mat-card-actions>
-          <div
-            [class.selectedMenu]="
-              item?.label === activeLink?.label && selectedMenu != ''
-            "
-            class="d-flex flex-column text-center py-3"
-            [ngClass]="'home-cards__item--' + item.link"
-          >
-            <div>
-              <i
-                (click)="openMenu(item)"
-                class="fas my-3 fa-4x"
-                [ngClass]="item.icon"
-              >
-              </i>
-              <span
-                  (click)="openMenu(item)"
-                  class="mb-3">
-                {{ item.label }}
-              </span>
-            </div>
-          </div>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </div>
+<div fxLayout="row wrap" fxLayout.lt-sm="row wrap" fxLayoutAlign="flex-start">
+  <ng-container *ngFor="let item of sidebarItems">
+    <mat-card
+      fxFlex="0 1 calc(33.3% - 32px)"
+      fxFlex.lt-md="0 1 calc(50% - 32px)"
+      fxFlex.lt-sm="100%"
+      [hidden]="item.hideTile"
+    >
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title>{{ item.label }}</mat-card-title>
+        <mat-card-subtitle
+          >For {{ item.label }} related tasks
+        </mat-card-subtitle>
+        <i style="color: black;" class="fas" [ngClass]="item.icon">
+        </i>
+      </mat-card-header>
+      <mat-card-content>
 
-  <!-- subMenu List -->
-  <div
-    class="col-sm-3 subMenu-cards__item my-3"
-    *ngFor="let item of (sidebarSubMenuItems | subMenuFilter:label)"
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <div
+          [class.selectedMenu]="
+            item?.label === activeLink?.label && selectedMenu != ''
+          "
+          [ngClass]="'home-cards__item--' + item.link"
+
+        >
+
+            <i
+              (click)="openMenu(item)"
+              class="fas my-3 fa-4x"
+              [ngClass]="item.icon"
+            >
+            </i>
+            <button
+              mat-button
+              (click)="openMenu(item)"
+              class="mb-3 mr-2"
+              matTooltip="Show details."
+            >
+              {{ item.label }}
+            </button>
+          </div>
+
+      </mat-card-actions>
+    </mat-card>
+
+  </ng-container>
+</div>
+<div class="row">
+  <div class="col"
+    *ngFor="let item of sidebarSubMenuItems | subMenuFilter: label"
     [hidden]="item.hideTile"
   >
-    <div
+    <mat-card
       *ngIf="enableSubMenu"
-      style="background-color: white; border-radius: 20px;"
-      class="d-flex flex-column text-center py-3"
       [ngClass]="'subMenu-cards__item--' + item.link"
       [routerLink]="'../' + item.link"
     >
-      <i
-          style="color: black;"
-          class="fas"
-          [ngClass]="item.icon"> </i>
+      <i style="color: black;" class="fas" [ngClass]="item.icon">
+      </i>
 
-      <span
-          style="color: black;"
-          class="mb-3">
+      <span style="color: black;" class="mb-3">
         {{ item.label }}
       </span>
-    </div>
+    </mat-card>
   </div>
-  <!-- /SubMenu List -->
-</ng-container>
-<!-- /grid col 1 -->
-<!-- / grid row -->
+  </div>

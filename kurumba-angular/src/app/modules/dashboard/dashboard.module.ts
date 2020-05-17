@@ -7,6 +7,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
     CommonModule,
     DashboardRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    FlexLayoutModule
   ]
 })
 export class DashboardModule { }
