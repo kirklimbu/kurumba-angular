@@ -5,7 +5,8 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
    {
     label: 'New Student',
     link: '../student',
-    icon: 'fas fa-database',
+    icon: 'group_add',
+
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Student'],
 
@@ -21,7 +22,7 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
   {
     label: 'New Class',
     link: '../student/class',
-    icon: 'fas fa-database',
+    icon: 'class',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Student'],
 
@@ -29,7 +30,7 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
   {
     label: 'New Teacher',
     link: '../teacher',
-    icon: 'fas fa-database',
+    icon: 'person_add',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Teacher'],
 
@@ -37,7 +38,7 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
   {
     label: 'Teacher subject',
     link: '../teacherSubject',
-    icon: 'fas fa-database',
+    icon: 'subject',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Teacher'],
 
@@ -45,28 +46,28 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
   {
     label: 'DLE/SEE',
     link: '../exam/dle-see',
-    icon: 'fas fa-database',
+    icon: 'verified_user',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Exam'],
 
   },{
     label: 'Internal',
     link: '../exam/internal',
-    icon: 'fas fa-database',
+    icon: 'question_answer',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Exam'],
 
   },{
     label: 'Marksheet',
     link: '../exam/result',
-    icon: 'fas fa-database',
+    icon: 'print',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Exam'],
 
   },{
     label: 'New year',
     link: '../year',
-    icon: 'fas fa-database',
+    icon: 'today',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Year'],
 
@@ -74,7 +75,7 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
   {
     label: 'Data-Backup',
     link: '../backup',
-    icon: 'fas fa-database',
+    icon: 'storage',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
     parentMenu: ['Backup'],
 

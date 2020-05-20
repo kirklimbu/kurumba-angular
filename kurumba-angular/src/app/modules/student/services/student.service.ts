@@ -28,6 +28,8 @@ export class StudentService {
     return (
       this.http
         .get(`${this.API_URL}/student`)
+
+        
         // .get(this.API_URL +'/student')
         .pipe(
           // catchError(err => {

@@ -185,7 +185,7 @@ export class StudentFormComponent implements OnInit {
 
   onCancel() {
 
-    const link: any = this.mode === 'add' ? '../' : '../../';
+    const link: any = this.mode === 'add' ? '../' : '../';
     this.router.navigate([link], { relativeTo: this.route });
   }
 
@@ -208,55 +208,49 @@ export class StudentFormComponent implements OnInit {
 
   // error message block
   getNameErrorMessage() {
-    return this.studentForm.controls['name'].hasError('required') ? 'Student name is required' :
-      this.studentForm.controls['name'].hasError('maxLength') ? 'Invalid name' :
-        this.studentForm.controls['name'].hasError('minlength') ? 'Required length is at least 2 characters' :
+    return this.studentForm.controls['name'].hasError('required') ? 'Student name is required.' :
+      this.studentForm.controls['name'].hasError('maxLength') ? 'Invalid name.' :
+        this.studentForm.controls['name'].hasError('minlength') ? 'Name must be atleast of 2 characters.' :
           '';
   }
   getfatherNameErrorMessage() {
-    return this.studentForm.controls['fatherName'].hasError('required') ? 'Student fatherName is required' :
-      this.studentForm.controls['fatherName'].hasError('maxLength') ? 'Invalid fatherName' :
-        this.studentForm.controls['fatherName'].hasError('minlength') ? 'Required length is at least 2 characters' :
+    return this.studentForm.controls['fatherName'].hasError('required') ? 'Student father name is required.' :
+      this.studentForm.controls['fatherName'].hasError('maxLength') ? 'Invalid fatherName.' :
+        this.studentForm.controls['fatherName'].hasError('minlength') ? 'Father name must be atleast of 2 characters.' :
           '';
   }
   getmotherNameErrorMessage() {
-    return this.studentForm.controls['motherName'].hasError('required') ? 'Student motherName is required' :
-      this.studentForm.controls['motherName'].hasError('maxLength') ? 'Invalid motherName' :
-        this.studentForm.controls['motherName'].hasError('minlength') ? 'Required length is at least 2 characters' :
+    return this.studentForm.controls['motherName'].hasError('required') ? 'Student mother name is required.' :
+      this.studentForm.controls['motherName'].hasError('maxLength') ? 'Invalid mother name.' :
+        this.studentForm.controls['motherName'].hasError('minlength') ? 'Mother name must be atleast of 2 characters' :
           '';
   }
   getaddressErrorMessage() {
-    return this.studentForm.controls['address'].hasError('required') ? 'Student address is required' :
-      this.studentForm.controls['address'].hasError('maxLength') ? 'Invalid address' :
-        this.studentForm.controls['address'].hasError('minlength') ? 'Required length is at least 2 characters' :
+    return this.studentForm.controls['address'].hasError('required') ? 'Student address is required.' :
+      this.studentForm.controls['address'].hasError('maxLength') ? 'Invalid address.' :
+        this.studentForm.controls['address'].hasError('minlength') ? 'Address must be atleast of 2 characters.' :
           '';
   }
   getphoneErrorMessage() {
-    return this.studentForm.controls['phoneNo'].hasError('required') ? 'Student phoneNo is required' :
-      this.studentForm.controls['phoneNo'].hasError('maxLength') ? 'Invalid phoneNo' :
-        this.studentForm.controls['phoneNo'].hasError('minlength') ? 'Required length is at least 2 characters' :
+    return this.studentForm.controls['phoneNo'].hasError('required') ? 'Parent phone num is required.' :
+      this.studentForm.controls['phoneNo'].hasError('maxLength') ? 'Invalid phone num.' :
+        this.studentForm.controls['phoneNo'].hasError('minlength') ? 'Invalid phone num.' :
           '';
   }
 
   getrollNoErrorMessage() {
-    return this.studentForm.controls['rollNo'].hasError('required') ? 'Student rollNo is required' :
-      this.studentForm.controls['rollNo'].hasError('maxLength') ? 'Invalid rollNo' :
-        this.studentForm.controls['rollNo'].hasError('minlength') ? 'Required length is at least 2 characters' :
+    return this.studentForm.controls['rollNo'].hasError('required') ? 'Student  roll num is required.' :
+      this.studentForm.controls['rollNo'].hasError('maxLength') ? 'Invalid roll num.' :
+        this.studentForm.controls['rollNo'].hasError('minlength') ? 'Roll num must be atleast of 1 character.' :
           '';
   }
 
-getDobErrorMessage() {
-    return this.studentForm.controls['dob'].hasError('required') ? 'Student dob is required' :
-      this.studentForm.controls['dob'].hasError('maxLength') ? 'Invalid dob' :
-        this.studentForm.controls['dob'].hasError('minlength') ? 'Required length is at least 2 characters' :
-          '';
+  getDobErrorMessage() {
+    return this.studentForm.controls['dob'].hasError('required') ? 'Student dob is required.' : '';
   }
 
-getClassErrorMessage() {
-    return this.classForm.controls['classId'].hasError('required') ? 'Student class is required' :
-      this.classForm.controls['classId'].hasError('maxLength') ? 'Invalid classId' :
-        this.classForm.controls['classId'].hasError('minlength') ? 'Required length is at least 2 characters' :
-          '';
+  getClassErrorMessage() {
+    return this.classForm.controls['classId'].hasError('required') ? 'Student class is required.' : '';
   }
 
 }

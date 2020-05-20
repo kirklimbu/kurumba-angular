@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
   isAuthenticated = true;
 
-  title ='Kurumba MA VI'
+  title = 'Kurumba MA VI'
 
   constructor(
     private router: Router,
@@ -24,9 +24,13 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.fetchUser();
   }
 
   fetchUser() {
+
+    console.log('logged user detials ' + JSON.parse(localStorage.getItem('loggedUser')));
+
     this.currentUser = JSON.parse(localStorage.getItem('loggedUser'));
 
   }

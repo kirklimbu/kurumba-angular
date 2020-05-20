@@ -30,7 +30,13 @@ $kurumba-angular-theme: mat-light-theme($kurumba-angular-primary, $kurumba-angul
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+body { margin: 0; font-family: 'Times New Roman', Times, serif;
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+
+
+

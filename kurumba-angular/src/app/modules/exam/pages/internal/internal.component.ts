@@ -156,14 +156,14 @@ export class InternalComponent implements OnInit {
   // error block
   getYearErrorMessage() {
 
-    return this.yearForm.controls['year'].hasError('required') ? 'Academic year is required' : '';
+    return this.yearForm.controls['year'].hasError('required') ? 'Academic year is required.' : '';
 
 
   }
 
   getTerminalErrorMessage() {
 
-    return this.terminalForm.controls['terminal'].hasError('required') ? 'Terminal is required' : '';
+    return this.terminalForm.controls['terminal'].hasError('required') ? 'Terminal is required.' : '';
 
 
   }
@@ -171,12 +171,12 @@ export class InternalComponent implements OnInit {
 
   getClassErrorMessage() {
 
-    return this.classForm.controls['className'].hasError('required') ? 'Class is required' : '';
+    return this.classForm.controls['className'].hasError('required') ? 'Class is required.' : '';
   }
 
   getStudentErrorMessage() {
 
-    return this.studentForm.controls['studentName'].hasError('required') ? 'Student is required' : '';
+    return this.studentForm.controls['studentName'].hasError('required') ? 'Student is required.' : '';
   }
 
 
