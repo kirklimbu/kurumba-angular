@@ -91,9 +91,9 @@
                     />
                     <mat-hint>Enter student motherName.</mat-hint>
                     <mat-error
-                    *ngIf="studentForm.controls['motherName'].invalid"
-                    >{{ getmotherNameErrorMessage() }}</mat-error
-                  >
+                      *ngIf="studentForm.controls['motherName'].invalid"
+                      >{{ getmotherNameErrorMessage() }}</mat-error
+                    >
                   </mat-form-field>
                 </kurumba-form-group>
               </div>
@@ -123,9 +123,9 @@
                     <mat-hint>Enter student address.</mat-hint>
 
                     <mat-error
-                    *ngIf="studentForm.controls['address'].invalid"
-                    >{{ getaddressErrorMessage() }}</mat-error
-                  >
+                      *ngIf="studentForm.controls['address'].invalid"
+                      >{{ getaddressErrorMessage() }}</mat-error
+                    >
                   </mat-form-field>
                 </kurumba-form-group>
               </div>
@@ -152,9 +152,9 @@
                     />
                     <mat-hint>Enter student phoneNo.</mat-hint>
                     <mat-error
-                    *ngIf="studentForm.controls['phoneNo'].invalid"
-                    >{{ getphoneErrorMessage() }}</mat-error
-                  >
+                      *ngIf="studentForm.controls['phoneNo'].invalid"
+                      >{{ getphoneErrorMessage() }}</mat-error
+                    >
                   </mat-form-field>
                 </kurumba-form-group>
               </div>
@@ -182,10 +182,9 @@
                       "
                     />
                     <mat-hint>Enter student rollNo.</mat-hint>
-                    <mat-error
-                    *ngIf="studentForm.controls['rollNo'].invalid"
-                    >{{ getrollNoErrorMessage() }}</mat-error
-                  >
+                    <mat-error *ngIf="studentForm.controls['rollNo'].invalid">{{
+                      getrollNoErrorMessage()
+                    }}</mat-error>
                   </mat-form-field>
                 </kurumba-form-group>
               </div>
@@ -212,10 +211,10 @@
                       [for]="picker"
                     ></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error
-                    *ngIf="studentForm.controls['dob'].invalid"
-                    >{{ getDobErrorMessage() }}</mat-error
-                  >
+                    <mat-hint>Enter student date of birth.</mat-hint>
+                    <mat-error *ngIf="studentForm.controls['dob'].invalid">{{
+                      getDobErrorMessage()
+                    }}</mat-error>
                   </mat-form-field>
                 </kurumba-form-group>
               </div>
@@ -233,9 +232,9 @@
                         formControlName="classId"
                         required
                         [class.is-valid]="
-                        classForm.controls['classId'].valid &&
-                        classForm.controls['classId'].touched
-                      "
+                          classForm.controls['classId'].valid &&
+                          classForm.controls['classId'].touched
+                        "
                       >
                         <mat-option disabled> Select class</mat-option>
                         <mat-option
@@ -246,9 +245,9 @@
                       </mat-select>
                       <mat-hint align="start">Select class</mat-hint>
                       <mat-error
-                    *ngIf="classForm.controls['classId'].invalid"
-                    >{{ getClassErrorMessage() }}</mat-error
-                  >
+                        *ngIf="classForm.controls['classId'].invalid"
+                        >{{ getClassErrorMessage() }}</mat-error
+                      >
                     </mat-form-field>
                   </kurumba-form-group>
                 </div>
@@ -258,7 +257,7 @@
 
             <mat-divider></mat-divider>
             <!-- save cancel button -->
-            <div class="mt-3 mb-2 mr-3">
+            <div class="mt-3 mb-2 mr-3" >
               <kurumba-save-cancel-buttons
                 (save)="onSave('add')"
                 (cancel)="onCancel()"

@@ -6,8 +6,8 @@ import { HomeItem } from 'src/app/modules/home/home-item.model';
 })
 export class SubMenuFilterPipe implements PipeTransform {
 
-  transform(subMenuList :HomeItem[], label): HomeItem[] {
-    console.log('filter submenu list input data: '+subMenuList);
+  transform(subMenuList: HomeItem[], label): HomeItem[] {
+    console.log('filter submenu list input data: ' + JSON.stringify(subMenuList));
 
     const filteredSubLinks = subMenuList.filter(
       link => {

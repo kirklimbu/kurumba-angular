@@ -35,7 +35,6 @@ export class StudentComponent implements OnInit {
 
   studentForm(mode, id?) {
 
-    console.log('form_mode ' + mode + ' form_id ' + id);
     const link: any = mode === 'add' ? 'addStudent' : 'editStudent/';
     this.router.navigate([link], { relativeTo: this.route, queryParams: { studentId: id } });
 
@@ -48,17 +47,13 @@ export class StudentComponent implements OnInit {
   }
 
   fetchAllStudents() {
-    // this.toastr.success('students list');
 
     const query: boolean = false;
     this.studentService.getAllStudents(query)
       .subscribe(
         data => {
           this.spinner.hide();
-          console.log('student list ' + JSON.stringify(data));
-
           this.studentListDataSource = new MatTableDataSource(data);
-          console.log('student table list data ' + (this.studentListDataSource));
 
         },
         error => {

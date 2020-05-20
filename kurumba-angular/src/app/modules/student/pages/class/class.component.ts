@@ -48,7 +48,7 @@ export class ClassComponent implements OnInit {
 
     const link: any = mode === 'add' ? 'addClass' : 'editClass'
 
-    this.router.navigate([link], { relativeTo: this.route })
+    this.router.navigate([link], { relativeTo: this.route });
 
   }
 

@@ -16,7 +16,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MaterialModule,
     SharedModule,
     FlexLayoutModule,
-    
+
+
   ]
 })
 export class HomeModule { }
