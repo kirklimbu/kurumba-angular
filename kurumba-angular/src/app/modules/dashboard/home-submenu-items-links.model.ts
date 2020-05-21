@@ -21,10 +21,10 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
   // },
   {
     label: 'New Class',
-    link: '../student/class',
+    link: '../class',
     icon: 'class',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],
-    parentMenu: ['Student'],
+    parentMenu: ['Class'],
 
   },
   {

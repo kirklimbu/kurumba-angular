@@ -4,23 +4,20 @@ import { OntypeValidationService } from 'ontype-validations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Classes } from 'src/app/shared/models/classes.model';
 import { Subject } from 'src/app/shared/models/subject.model';
-import { StudentService } from '../../services/student.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
-import { MatTableDataSource } from '@angular/material/table';
-
+import { ClassxService } from '../../services/classx.service';
 @Component({
   selector: 'app-class-form',
   templateUrl: './class-form.component.html',
   styleUrls: ['./class-form.component.scss']
 })
 export class ClassFormComponent implements OnInit {
-
   class: Classes = new Classes();
   subject: Subject = new Subject();
   classForm: FormGroup;
   formSubmitted: true;
-  getErrorMessage:string='';
+  getErrorMessage = '';
   mode = '';
 
   constructor(
@@ -28,7 +25,7 @@ export class ClassFormComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
-    private studentService: StudentService,
+    private classxService: ClassxService,
     private onTypeValidateService: OntypeValidationService
 
   ) { }
@@ -49,7 +46,7 @@ export class ClassFormComponent implements OnInit {
 
   subjectCollection(): FormArray {
 
-    return this.classForm.get("subjectCollection") as FormArray;
+    return this.classForm.get('subjectCollection') as FormArray;
   }
 
   get className() {
@@ -70,6 +67,7 @@ export class ClassFormComponent implements OnInit {
   get subjectName() {
     return this.classForm.controls.subject;
   }
+  
   addSubject() {
     this.subjectCollection().push(this.buildSubjectForm());
   }
@@ -79,13 +77,14 @@ export class ClassFormComponent implements OnInit {
   }
 
   onSave() {
+
     this.formSubmitted = true;
     this.spinner.show();
 
     console.log('class form values ' + JSON.stringify(this.classForm.value));
     if (this.classForm.valid) {
 
-      this.studentService.saveClass(this.classForm.value)
+      this.classxService.saveClass(this.classForm.value)
         .pipe(finalize(() => this.spinner.hide()))
         .subscribe(
           res => {
@@ -128,5 +127,4 @@ export class ClassFormComponent implements OnInit {
     }
     return false;
   }
-
 }

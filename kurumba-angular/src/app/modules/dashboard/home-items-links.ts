@@ -14,6 +14,11 @@ export const HOME_ITEMS_LINKS: HomeItem[] = [
     link: 'student',
     icon: 'school',
     // permissions: ['SUPER_ADMIN']
+  },{
+    label: 'Class',
+    link: 'class',
+    icon: 'chrome_reader_mode',
+    // permissions: ['SUPER_ADMIN']
   },
   {
     label: 'Teacher',

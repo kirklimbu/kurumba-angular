@@ -9,7 +9,7 @@ export class Classes {
   subjectCollection: Subject[] = [];
 
 
-  constructor(){
-    this.subjectCollection=[]
+  constructor() {
+    this.subjectCollection = [];
   }
 }

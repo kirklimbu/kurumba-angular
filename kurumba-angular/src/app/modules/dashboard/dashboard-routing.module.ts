@@ -28,6 +28,18 @@ const routes: Routes = [
         // canActivate: [UserRoleGuard]
 
       },
+       {
+        path: 'class',
+        loadChildren: () => import('./../classx/classx.module').then(m => m.ClassxModule),
+        data: {
+
+          breadcrumb: 'Class',
+
+          // allowedRoles: [UserRoleType.SYSTEM_ADMIN, UserRoleType.SUPER_ADMIN]
+        },
+        // canActivate: [UserRoleGuard]
+
+      },
       {
         path: 'year',
         loadChildren: () => import('./../year/year.module').then(m => m.YearModule),
