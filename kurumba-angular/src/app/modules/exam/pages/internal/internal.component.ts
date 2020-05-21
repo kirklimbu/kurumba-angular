@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { log } from 'util';
 import { Subject } from 'src/app/shared/models/subject.model';
 import { Marks } from './../../../../shared/models/marks.model';
@@ -16,7 +17,7 @@ import { Classes } from 'src/app/shared/models/classes.model';
 })
 export class InternalComponent implements OnInit {
 
-  marksForm: FormGroup;
+  // examForm: FormGroup;
   examForm: FormGroup;
   yearForm: FormGroup;
   terminalForm: FormGroup;
@@ -34,6 +35,8 @@ export class InternalComponent implements OnInit {
   subjectx: Subject = new Subject();
   terminal: Terminal = new Terminal();
   classxId: number;
+  filteredClass: Classes[] = [];
+  submitted=false;
 
   constructor(
     private fb: FormBuilder,
@@ -65,6 +68,7 @@ export class InternalComponent implements OnInit {
       this.studentForm = this.fb.group({
         studentId: this.student.studentId,
         studentName: [this.student.name, [Validators.required]],
+        classx: [this.classForm],
       }),
       this.subjectForm = this.fb.group({
         subjectId: [this.subjectx.subjectId],
@@ -73,12 +77,16 @@ export class InternalComponent implements OnInit {
         // fmTheory: [this.subjectx.fmTheory, [Validators.required]],
       }),
 
-      this.marksForm = this.fb.group({
+      this.examForm = this.fb.group({
         marksId: this.marks.marksId,
         prMarks: [this.marks.prMarks,],
         thMarks: [this.marks.thMarks, [Validators.required]],
         // totalMarks: [this.marks.totalMarks, [Validators.required]],
-        subjectList: [this.subjectForm]
+        subject: [this.subjectForm],
+        terminal: [this.terminalForm],
+        year: [this.yearForm],
+        student: [this.studentForm]
+
       });
   }
 
@@ -132,7 +140,15 @@ export class InternalComponent implements OnInit {
   selectClass(id) {
 
     this.classxId = id.value;
-    console.log('dfsfs' + id);
+    console.log('selected class id:  ' + JSON.stringify(this.classxId));
+
+    // selected class subjects list
+    this.filteredClass = this.classList.filter(f => f.classId === this.classxId);
+    // const subjectx = this.filteredClass.forEach( f => f.subjectCollection)
+
+    console.log('filtered class data: ' + JSON.stringify(this.filteredClass));
+    // console.log('filtered subject data: ' + JSON.stringify(subjectx));
+
 
     this.examService.getAllStudentsByClassId(this.classxId)
       .subscribe(
@@ -148,6 +164,20 @@ export class InternalComponent implements OnInit {
   }
   fetchAllStudents() {
 
+
+  }
+
+  onSave() {
+    console.log('save clicked');
+    this.submitted=true;
+
+    console.log("form values: "+JSON.stringify(this.examForm.value));
+
+
+  }
+
+  onCancel() {
+    console.log('cancel clicked');
 
   }
 

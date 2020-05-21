@@ -41,7 +41,7 @@ export class ExamService {
   }
 
   getAllClasses(): any {
-    console.log('calling class service');
+    console.log('calling class service: ');
 
     return this.http.get(`${this.API_URL}/classes`)
     // .pipe(

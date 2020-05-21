@@ -1,16 +1,15 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { StudentService } from '../../services/student.service';
 import { Classes } from 'src/app/shared/models/classes.model';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { ClassxService } from '../../services/classx.service';
 @Component({
-  selector: 'app-class',
-  templateUrl: './class.component.html',
-  styleUrls: ['./class.component.scss']
+  selector: 'app-classx',
+  templateUrl: './classx.component.html',
+  styleUrls: ['./classx.component.scss']
 })
-export class ClassComponent implements OnInit {
+export class ClassxComponent implements OnInit {
 
   displayedColumns: string[] = ['Sn', 'name', 'Action'];
   classListDataSource: MatTableDataSource<any>;
@@ -20,7 +19,7 @@ export class ClassComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private studentservice: StudentService
+    private classxService: ClassxService
 
   ) { }
 
@@ -29,7 +28,7 @@ export class ClassComponent implements OnInit {
   }
 
   fetchAllClasses() {
-    this.studentservice.getAllClasses()
+    this.classxService.getAllClasses()
       .subscribe(
         data => {
           this.spinner.hide();

@@ -1,6 +1,4 @@
 import { StudentFormComponent } from './shared/student-form/student-form.component';
-import { ClassFormComponent } from './shared/class-form/class-form.component';
-import { ClassComponent } from './pages/class/class.component';
 import { StudentComponent } from './pages/student/student.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -29,22 +27,7 @@ const routes: Routes = [
     }
   },
 
-  {
-    path: 'class',
-    component: ClassComponent,
-    data: {
-      breadcrumb: 'Class'
-    }
 
-  },
-  {
-    path: 'class/addClass',
-    component: ClassFormComponent,
-    data: {
-      breadcrumb: 'Add class '
-    }
-
-  },
 
 ];
 

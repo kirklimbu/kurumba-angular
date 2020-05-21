@@ -29,7 +29,7 @@ export class StudentService {
       this.http
         .get(`${this.API_URL}/student`)
 
-        
+
         // .get(this.API_URL +'/student')
         .pipe(
           // catchError(err => {
@@ -91,21 +91,6 @@ export class StudentService {
       // )
     );
   }
-
-
-  saveClass(classx : Classes): any {
-  console.log('CLASS save service' + JSON.stringify(classx));
-
-  return (
-    this.http
-      .post(`${this.API_URL}/create/class`, { ...classx })
-    // .pipe(
-    //   catchError(err => {
-    //     return Observable.throw(err);
-    //   })
-    // )
-  );
-}
 
 }
 
