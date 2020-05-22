@@ -9,6 +9,7 @@ import { Year } from 'src/app/shared/models/year.model';
 import { Terminal } from 'src/app/shared/models/terminal.model';
 import { Student } from 'src/app/shared/models/student.model';
 import { Classes } from 'src/app/shared/models/classes.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-internal',
@@ -36,11 +37,13 @@ export class InternalComponent implements OnInit {
   terminal: Terminal = new Terminal();
   classxId: number;
   filteredClass: Classes[] = [];
-  submitted=false;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
-    private examService: ExamService
+    private examService: ExamService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -169,15 +172,16 @@ export class InternalComponent implements OnInit {
 
   onSave() {
     console.log('save clicked');
-    this.submitted=true;
+    this.submitted = true;
 
-    console.log("form values: "+JSON.stringify(this.examForm.value));
+    console.log("form values: " + JSON.stringify(this.examForm.value));
 
 
   }
 
   onCancel() {
     console.log('cancel clicked');
+    this.router.navigate(['../../']);
 
   }
 
