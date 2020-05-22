@@ -1,14 +1,42 @@
-.marks-container
-{
-  padding: 2px,2px,2px,2px;
+.marks-container {
+  padding: 2px;
   margin-top: 2px;
   // width: 100%;
-  margin-left: 15%;
+  margin-left: 25%;
 
 }
 
-.table
-{
-  width: 57%;
+.table {
+  width: 75%;
 }
+
+
+.example-card {
+  width: 75%;
+  margin-left: 10%;
+}
+
+.action-buttons {
+  margin-right: 20%;
+  margin-top: 24px;
+}
+
+
+legend {
+  margin-left: 10%;
+}
+
+.list-template {
+  background-color: #e9ecef;
+  height: 44px;
+  margin-bottom: 16px;
+}
+
+.form-control {
+  width: 50%;
+  display: block;
+  text-align: center;
+  margin-left: 25%;
+}
+
 

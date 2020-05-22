@@ -15,7 +15,7 @@ const routes: Routes = [
     path: 'internal',
     component: InternalComponent,
     data: {
-      breadcrumb: 'Internal marks entry'
+      breadcrumb: ' Internal marks entry'
     }
   }, {
     path: 'dle-see',
