@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+// Angular
+import { RouterModule, Routes } from '@angular/router';
 
+// Project
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
@@ -28,7 +30,7 @@ const routes: Routes = [
         // canActivate: [UserRoleGuard]
 
       },
-       {
+      {
         path: 'class',
         loadChildren: () => import('./../classx/classx.module').then(m => m.ClassxModule),
         data: {
@@ -55,6 +57,10 @@ const routes: Routes = [
       {
         path: 'exam',
         loadChildren: () => import('./../exam/exam.module').then(m => m.ExamModule),
+      },
+      {
+        path: 'teacher',
+        loadChildren: () => import('./../teacher/teacher.module').then(m => m.TeacherModule),
       }
     ]
   },
