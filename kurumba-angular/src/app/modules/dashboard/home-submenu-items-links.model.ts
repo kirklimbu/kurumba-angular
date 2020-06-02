@@ -36,7 +36,7 @@ export const HOME_SUBMENU_ITEMS_LINKS: HomeItem[] = [
 
   },
   {
-    label: 'Teacher subject',
+    label: 'Subject for Teacher',
     link: '../teacher/teacherSubject',
     icon: 'subject',
     // permissions: ['SYSTEM_ADMIN', 'SUPER_ADMIN'],

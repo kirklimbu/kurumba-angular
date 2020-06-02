@@ -1,7 +1,7 @@
+import { RouterModule, Routes } from '@angular/router';
+
 import { HomeComponent } from './modules/home/pages/home/home.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
 
 const routes: Routes = [
 
@@ -22,11 +22,11 @@ const routes: Routes = [
   //   path: '404',
   //   // component: PageNotFoundComponent
   // },
-  // {
-  //   path: '',
-  //   pathMatch: 'full',
-  //   redirectTo: 'login'
-  // },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
   // {
   //   path: '**',
   //   redirectTo: '404'

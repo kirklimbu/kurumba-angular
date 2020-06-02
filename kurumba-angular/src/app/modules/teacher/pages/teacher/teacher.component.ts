@@ -18,7 +18,7 @@ import { TeacherService } from './../../services/teacher.service';
 export class TeacherComponent implements OnInit {
 
   // props
-  displayedColumns: string[] = ['Sn', 'Name', 'Address', 'Phone Num', 'D.O.B', 'Qualification', 'Action'];
+  displayedColumns: string[] = ['Sn', 'Name', 'Address', 'Phone Num', 'D.O.B', 'Qualification','Subject', 'Action'];
   teacherListDataSource: MatTableDataSource<any>;
   student: any;
   studentList: any[] = [];

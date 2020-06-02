@@ -13,10 +13,16 @@ const routes: Routes = [
     component: TeacherComponent
   }, {
     path: 'addTeacher',
-    component: TeacherFormComponent
+    component: TeacherFormComponent,
+    data: {
+      breadcrumb: 'Add Teacher'
+    }
   }, {
     path: 'teacherSubject',
-    component: TeacherSubjectComponent
+    component: TeacherSubjectComponent,
+    data: {
+      breadcrumb: 'Add Subject For Teacher'
+    }
   },
 ];
 

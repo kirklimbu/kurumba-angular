@@ -1,12 +1,14 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { OntypeValidationService } from 'ontype-validations';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Classes } from 'src/app/shared/models/classes.model';
-import { Subject } from 'src/app/shared/models/subject.model';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { finalize } from 'rxjs/operators';
 import { ClassxService } from '../../services/classx.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { OntypeValidationService } from 'ontype-validations';
+import { Subject } from 'src/app/shared/models/subject.model';
+import { finalize } from 'rxjs/operators';
+
 @Component({
   selector: 'app-class-form',
   templateUrl: './class-form.component.html',
@@ -44,13 +46,13 @@ export class ClassFormComponent implements OnInit {
     })
   }
 
+  get className() {
+    return this.classForm.controls.className;
+  }
+
   subjectCollection(): FormArray {
 
     return this.classForm.get('subjectCollection') as FormArray;
-  }
-
-  get className() {
-    return this.classForm.controls.className;
   }
 
   buildSubjectForm() {
@@ -67,7 +69,7 @@ export class ClassFormComponent implements OnInit {
   get subjectName() {
     return this.classForm.controls.subject;
   }
-  
+
   addSubject() {
     this.subjectCollection().push(this.buildSubjectForm());
   }
