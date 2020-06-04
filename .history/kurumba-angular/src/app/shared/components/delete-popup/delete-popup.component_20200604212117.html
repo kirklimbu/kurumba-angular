@@ -1,0 +1,56 @@
+<!-- <div class="modal-content">
+
+  <header class="modal-header bg-blue">
+      <h6 class="modal-title text-capitalize">{{title}}</h6>
+
+      <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+      </button>
+    </header>
+
+    <section class="modal-body">
+      <p>{{message}}</p>
+    </section>
+
+
+    <footer class="modal-footer">
+      <button type="button"
+              class="btn btn-success btn-rounded"
+              ngbAutofocus
+              (click)="close()">
+        <i class="fas fa-check mr-1"></i> Yes
+      </button>
+
+      <button type="button"
+              class="btn btn-danger btn-rounded"
+              (click)="dismiss()">
+        <i class="fas fa-ban mr-1"></i> No
+      </button>
+    </footer>
+  </div> -->
+
+<!-- material modal  -->
+
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content class="mat-typography">
+  <p>{{ message }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    color="warn"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="close()"
+  >
+    Yes
+  </button>
+
+  <button
+      mat-button mat-dialog-close color="secondary" (click)="dismiss()">
+    No
+  </button>
+</mat-dialog-actions>
+
+<!-- / material modal  -->

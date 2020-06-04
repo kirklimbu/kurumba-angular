@@ -1,0 +1,185 @@
+<kurumba-breadcrumb></kurumba-breadcrumb>
+
+<!-- Teacher form -->
+<form novalidate role="form" [formGroup]="teacherForm">
+  <fieldset class="scheduler-border">
+    <legend class="scheduler-border ml-2">
+      {{ mode | titlecase }} Teacher Form
+    </legend>
+
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <!--  name -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Full name</mat-label>
+                    <input
+                      matInput
+                      id="name"
+                      name="name"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="name"
+                      required
+                      [class.is-valid]="
+                        teacherForm.controls['name'].valid &&
+                        teacherForm.controls['name'].touched
+                      "
+                    />
+                    <mat-error *ngIf="teacherForm.controls['name'].invalid">{{
+                      getNameErrorMessage()
+                    }}</mat-error>
+                    <mat-hint>Enter Teacher full name.</mat-hint>
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!--/
+                 name -->
+
+              <!-- address -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Address</mat-label>
+                    <input
+                      matInput
+                      id="address"
+                      name="address"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="address"
+                      required
+                      [class.is-valid]="
+                        teacherForm.controls['address'].valid &&
+                        teacherForm.controls['address'].touched
+                      "
+                    />
+                    <mat-hint>Enter Teacher address.</mat-hint>
+
+                    <mat-error
+                      *ngIf="teacherForm.controls['address'].invalid"
+                      >{{ getaddressErrorMessage() }}</mat-error
+                    >
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+            </div>
+            <!-- / address -->
+
+            <!--  phone -->
+            <div class="row">
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>phone No.</mat-label>
+                    <input
+                      matInput
+                      id="phoneNo"
+                      name="phoneNo"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="phoneNo"
+                      required
+                      [class.is-valid]="
+                        teacherForm.controls['phoneNo'].valid &&
+                        teacherForm.controls['phoneNo'].touched
+                      "
+                    />
+                    <mat-hint>Enter mobile number.</mat-hint>
+                    <mat-error
+                      *ngIf="teacherForm.controls['phoneNo'].invalid"
+                      >{{ getphoneErrorMessage() }}</mat-error
+                    >
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!-- /  phone -->
+
+              <!-- qualification -->
+              <div class="col">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Qualificaton.</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      id="qualification"
+                      name="qualification"
+                      (paste)="onPaste($event, 'alphaOnly')"
+                      (keypress)="validate($event, 'alphaOnly')"
+                      class="form-control"
+                      formControlName="qualification"
+                      required
+                      [class.is-valid]="
+                        teacherForm.controls['qualification'].valid &&
+                        teacherForm.controls['qualification'].touched
+                      "
+                    />
+                    <mat-hint>Enter Teacher qualification.</mat-hint>
+                    <mat-error
+                      *ngIf="teacherForm.controls['qualification'].invalid"
+                      >{{ getqualificationErrorMessage() }}</mat-error
+                    >
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+              <!-- /  rollNo -->
+            </div>
+
+            <!-- dob -->
+            <div class="row">
+              <div class="col-md-4">
+                <kurumba-form-group>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Choose a date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      formControlName="dob"
+                      [class.is-valid]="
+                        teacherForm.controls['dob'].valid &&
+                        teacherForm.controls['dob'].touched
+                      "
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-hint>Enter Teacher date of birth.</mat-hint>
+                    <mat-error *ngIf="teacherForm.controls['dob'].invalid">{{
+                      getDobErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                </kurumba-form-group>
+              </div>
+            </div>
+            <!-- / dob -->
+
+            <!--  subject -->
+           
+
+          <mat-divider></mat-divider>
+          <!-- save cancel button -->
+          <div class="mt-3 mb-2 mr-3">
+            <kurumba-save-cancel-buttons
+              (save)="onSave('add')"
+              (cancel)="onCancel()"
+            >
+            </kurumba-save-cancel-buttons>
+          </div>
+          <!--/ save cancel button -->
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+  </fieldset>
+</form>

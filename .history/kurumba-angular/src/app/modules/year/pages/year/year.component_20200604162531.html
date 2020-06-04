@@ -1,0 +1,123 @@
+<!-- <kurumba-breadcrumb></kurumba-breadcrumb> -->
+<div class="list-template">
+
+<kurumba-list-page-template
+  [enableActiveLink]="true"
+  [enableAdd]="false"
+  [enableSearch]="false"
+  [heading]="'Year List'"
+>
+</kurumba-list-page-template>
+  <div class="row">
+    <!-- table column -->
+    <div class="col-md-6">
+      <!-- year form -->
+      <form novalidate role="form" [formGroup]="yearForm">
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border ml-2">
+            Year Form
+          </legend>
+
+          <div class="row mb-2">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <!--  name -->
+                    <div class="col">
+                      <kurumba-form-group>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Year</mat-label>
+                          <input
+                            type="text"
+                            matInput
+                            id="year"
+                            name="year"
+                            (paste)="onPaste($event, 'alphaOnly')"
+                            (keypress)="validate($event, 'alphaOnly')"
+                            class="form-control"
+                            formControlName="year"
+                            required
+                            [class.is-valid]="
+                              yearForm.controls['year'].valid &&
+                              yearForm.controls['year'].touched
+                            "
+                          />
+                          <mat-error
+                            *ngIf="yearForm.controls['year'].invalid"
+                            >{{ getYearErrorMessage() }}</mat-error
+                          >
+                          <mat-hint>Enter academic year.</mat-hint>
+                        </mat-form-field>
+                        <div class="mt-2"><mat-divider></mat-divider></div>
+                        <!-- save cancel button -->
+                        <div class="mr-3 mt-3">
+                          <kurumba-save-cancel-buttons
+                            (save)="onSave()"
+                            (cancel)="onCancel()"
+                          >
+                          </kurumba-save-cancel-buttons>
+                        </div>
+                        <!--/ save cancel button -->
+                      </kurumba-form-group>
+                    </div>
+                    <!--/
+             year -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- / father name -->
+        </fieldset>
+      </form>
+    </div>
+    <!-- / table column -->
+
+    <!-- form column -->
+    <div class="col-md-6">
+      <!-- year table -->
+      <div class="col p-0 y-auto">
+        <!-- student table -->
+        <legend class="scheduler-border ml-2">
+          Year lists:
+        </legend>
+
+        <table
+          [dataSource]="yearListDataSource"
+          mat-table
+          class="mat-elevation-z8"
+        >
+          <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Sn Column -->
+          <ng-container matColumnDef="Sn">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element; index as i">{{ i + 1 }}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Year">
+            <th mat-header-cell *matHeaderCellDef>Year</th>
+            <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element">
+              <kurumba-action-buttons [enableEdit]="true" [enableDelete]="true">
+              </kurumba-action-buttons>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <!-- / student table -->
+      </div>
+    </div>
+  </div>
+</kurumba-list-page-template>
