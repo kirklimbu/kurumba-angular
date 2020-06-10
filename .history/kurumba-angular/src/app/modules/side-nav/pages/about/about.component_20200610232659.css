@@ -1,0 +1,17 @@
+#about{
+  height: 400px;
+  background:url('/assets/images/old_buliding.png');
+  color:grey;
+  background-position: fixed;
+
+}
+
+.example-card{
+  /* display: block; */
+  text-align: center;
+}
+
+.mat-icon{
+  size: 3em;
+  color:blue;
+}

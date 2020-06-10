@@ -1,0 +1,35 @@
+mat-sidenav {
+  width: 250px;
+  background: inherit;
+}
+
+.logout-btn {
+
+  color: red;
+  position: relative;
+
+
+}
+
+.nav-bar-container {
+  background-color: whitesmoke;
+}
+
+.nav-bar {
+  position: relative;
+  margin-left: 12%;
+
+
+  mat-icon {
+    size: 150px;
+    padding-right: 12px;
+    // color:blue;
+  }
+}
+
+#sidenav.mat-icon
+{
+  .mat-icon:{
+    margin-right: 22px;
+  }
+}

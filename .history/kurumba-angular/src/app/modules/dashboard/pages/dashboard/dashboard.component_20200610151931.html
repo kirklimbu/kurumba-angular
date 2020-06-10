@@ -1,0 +1,87 @@
+<div id="viewport">
+  <kurumba-navbar></kurumba-navbar>
+
+  <!-- <div
+    id="content"
+    class="container-fluid text-center"
+    fxLayout="row wrap"
+    fxLayout.lt-sm="row wrap"
+    fxLayoutAlign="flex-start"
+  >
+    <ng-container *ngFor="let item of sidebarItems">
+      <mat-card
+        fxFlex="0 1 calc(20% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+        fxFlex.xs="100%"
+        [hidden]="item.hideTile"
+      >
+        <mat-icon
+          class="mat-icon"
+          [ngClass]="item.icon"
+          (click)="openMenu(item)"
+          >{{ item.icon }}</mat-icon
+        >
+        <mat-card-header>
+          <mat-card-title>{{ item.label }}</mat-card-title>
+          <mat-card-subtitle
+            >For {{ item.label }} related tasks
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-actions>
+          <div
+            [class.selectedMenu]="
+              item?.label === activeLink?.label && selectedMenu != ''
+            "
+            [ngClass]="'home-cards__item--' + item.link"
+          >
+            <button
+              mat-button
+              (click)="openMenu(item)"
+              class="mb-3 mr-2"
+              matTooltip="Show details."
+            >
+              {{ item.label }}
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div> -->
+
+  <!-- sub menu links -->
+  <mat-divider class="mt-3" [inset]="false"></mat-divider>
+
+  <div
+    class="text-center"
+    fxLayout="column wrap"
+    fxLayout.lt-sm="column wrap"
+    fxFlexAlign="flex-start"
+  >
+    <ng-container
+      *ngFor="let item of sidebarSubMenuItems | subMenuFilter: label"
+    >
+      <mat-card
+        fxFlex="0 1 calc(20% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+        fxFlex.xs="100%"
+        fxFlexAlign="center"
+        *ngIf="enableSubMenu"
+        [ngClass]="'subMenu-cards__item--' + item.link"
+        [routerLink]="'../' + item.link"
+        [hidden]="item.hideTile"
+      >
+        <mat-icon class="mat-icon" [ngClass]="item.icon" matTooltip="Go to"
+          >{{ item.icon }}
+        </mat-icon>
+
+        <button mat-button matTooltip="Go to" class="text-center">
+          {{ item.label }}
+        </button>
+        <mat-card-subtitle>Create new {{ item.label }}. </mat-card-subtitle>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>
