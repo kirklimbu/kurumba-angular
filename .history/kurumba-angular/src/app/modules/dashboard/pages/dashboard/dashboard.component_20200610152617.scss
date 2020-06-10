@@ -1,0 +1,63 @@
+
+
+  #viewport {
+    // padding-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  #content {
+    width: 100%;
+    position: relative;
+    margin-right: 0;
+  }
+
+  // kurumba-navbar{
+  //   z-index: 1000;
+  //   position: fixed;
+  //   left: 250px;
+  //   width: 250px;
+  //   height: 100%;
+  //   margin-left: -250px;
+  //   overflow-y: auto;
+  //   background: #37474F;
+  //   -webkit-transition: all 0.5s ease;
+  //   -moz-transition: all 0.5s ease;
+  //   -o-transition: all 0.5s ease;
+  //   transition: all 0.5s ease;
+  // }
+
+  .mat-card {
+    display: block;
+    padding: 16px;
+    margin: 12px;
+    width: 25%;
+    height: auto;
+    margin-top: 24px;
+  }
+
+  .mat-button {
+    display: block;
+    width: 100%;
+
+  }
+
+  .mat-icon {
+    display: inline;
+    font-size: 50px;
+    color: blue;
+    align-content: center;
+    align-items: center;
+  }
+
+  .mat-card-header {
+    display: block;
+    align-items: center;
+    align-content: center;
+    color: red;
+  }
+  .mat-divider{
+    margin-left: 8px;
+    margin-right: 8px;
+  }

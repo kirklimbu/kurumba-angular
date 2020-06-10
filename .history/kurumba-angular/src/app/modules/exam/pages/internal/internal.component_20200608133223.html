@@ -1,0 +1,225 @@
+<div class="list-template">
+
+  <kurumba-list-page-template
+  [enableActiveLink]="true"
+  [enableAdd]="false"
+  [enableSearch]="false"
+  [heading]="'Internal Marks Entry'" >
+</kurumba-list-page-template>
+</div>
+
+<!-- exam form -->
+<form novalidate role="form" [formGroup]="examForm">
+  <fieldset class="scheduler-border">
+    <legend class="scheduler-border">
+      Exam Form
+    </legend>
+
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <mat-card class="example-card">
+          <mat-card-header>
+
+          </mat-card-header>
+          <mat-card-content>
+            <!-- year -->
+            <form novalidate role="form" [formGroup]="marksForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select year:</mat-label>
+                      <mat-select
+                        matInput
+                        id="year"
+                        formControlName="year"
+                        required
+
+                      >
+                        <mat-option disabled> Select Year</mat-option>
+                        <mat-option
+                          [value]="year.yearId"
+                          *ngFor="let year of yearList"
+                          >{{ year.year }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select academic year</mat-hint>
+                      <mat-error *ngIf="marksForm.controls['year'].invalid">{{
+                        getYearErrorMessage()
+                      }}</mat-error>
+                    </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+            </form>
+            <!-- / year -->
+
+            <!-- terminal -->
+            <form novalidate role="form" [formGroup]="marksForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select terminal:</mat-label>
+                      <mat-select
+                        matInput
+                        id="terminal"
+                        formControlName="terminal"
+                        required
+
+                      >
+                        <mat-option disabled> Select terminal</mat-option>
+                        <mat-option
+                          [value]="terminal.terminalId"
+                          *ngFor="let terminal of terminalList"
+                          >{{ terminal.terminal }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select terminal</mat-hint>
+                      <mat-error
+                        *ngIf="marksForm.controls['terminal'].invalid"
+                        >{{ getTerminalErrorMessage() }}</mat-error
+                      >
+                    </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+            </form>
+            <!-- / terminal -->
+
+            <!-- class -->
+            <form novalidate role="form" [formGroup]="studentForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select class:</mat-label>
+                      <mat-select
+                        matInput
+                        id="className"
+                        formControlName="className"
+                        required
+
+                        (selectionChange)="selectClass($event)"
+                      >
+                        <mat-option disabled> Select class</mat-option>
+                        <mat-option
+                          [value]="class.classId"
+                          *ngFor="let class of classList"
+                          >{{ class.className }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select class</mat-hint>
+                      <!-- <mat-error
+                        *ngIf="studentForm.controls['className'].invalid"
+                        >{{ getClassErrorMessage() }}</mat-error
+                      > -->
+                    </mat-form-field>
+                  </kurumba-form-group>
+                </div>
+              </div>
+            </form>
+            <!-- / class -->
+
+            <!-- student -->
+            <form novalidate role="form" [formGroup]="studentForm">
+              <div class="row">
+                <div class="col">
+                  <kurumba-form-group>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Select student:</mat-label>
+                      <mat-select
+                        matInput
+                        id="studentName"
+                        formControlName="studentName"
+                        required
+
+                      >
+                        <mat-option disabled> Select Student</mat-option>
+                        <mat-option
+                          [value]="student.studentId"
+                          *ngFor="let student of studentList"
+                          >{{ student.name }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint align="start">Select student</mat-hint>
+                      <mat-error
+                        *ngIf="studentForm.controls['studentName'].invalid"
+                        >{{ getStudentErrorMessage() }}</mat-error
+                      >
+                    </mat-form-field>
+
+
+                  </kurumba-form-group>
+                </div>
+              </div>
+            <!-- </form> -->
+            <!-- / class -->
+            <!-- enter marks block -->
+            <div class="marks-container mt-3" *ngIf="filteredClass">
+              <ng-container *ngFor="let class of filteredClass">
+                <mat-label class="text-danger"
+                  >* For Absent subject, enter "N".</mat-label
+                ><br />
+                <small class="text-small"
+                  >Incase, the student is absent in any subject, enter N
+                  in practical/theory marks field.</small
+                >
+
+                <table class="table table-bordered table-responsive">
+                  <tr class="text-center">
+                    <th>Sn.</th>
+                    <th>Subject</th>
+                    <th>Practical marks</th>
+                    <th>Theory marks</th>
+                  </tr>
+
+                  <tr
+                    *ngFor="
+                      let item of class.subjectCollection;
+                      let i = index
+                    "
+                  >
+                    <td>{{ i + 1 }}.</td>
+                    <td>
+                      {{ item.subject }}
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="prMarks"
+
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="thMarks"
+                        required
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </ng-container>
+            </div>
+            <!-- / enter marks block -->
+          </mat-card-content>
+          <!-- <mat-divider></mat-divider>   -->
+          <!-- <mat-card-actions> -->
+            <!-- save cancel button -->
+            <div class="action-buttons">
+              <kurumba-save-cancel-buttons
+                (save)="onSave()"
+                (cancel)="onCancel()"
+              >
+              </kurumba-save-cancel-buttons>
+            </div>
+            <!--/ save cancel button -->
+          <!-- </mat-card-actions> -->
+        </mat-card>
+      </div>
+    </div>
+  </fieldset>
+</form>

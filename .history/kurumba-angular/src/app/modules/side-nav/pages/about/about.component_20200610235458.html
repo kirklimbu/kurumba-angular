@@ -1,0 +1,65 @@
+<header id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 m-auto text-center">
+        <h1>About us</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="row">
+  <div class="col-md-12">
+    <mat-card class="example-card">
+      <mat-card-content class="text-center" color="secondary">
+        <p>
+          Shree Kurumba Madhyamik Vidhyalaya(Kurumba MA VI) was established in
+          2012 B.S.<br />
+          This school was established as a result of combined effort of
+          Government of Nepal and the local people of Kurumba to provide quality
+          of education for local people living in Kurumba.<br />
+          Kurumba MA VI is the first school that keeps record of each student
+          and teachers via computer software,and tracks their progress in each
+          step.<br />
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-6 m-auto text-center mt-2 ">
+      <mat-card class="example-card">
+        <mat-icon>wc</mat-icon>
+
+          <mat-card-title>Students:</mat-card-title>
+          <mat-card-subtitle
+            >Total number of students in our school.</mat-card-subtitle
+          >
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p class="h3 mt-3">
+            {{ students }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6 m-auto text-center mt-2">
+      <mat-card class="example-card ">
+        <mat-icon>people</mat-icon>
+
+          <mat-card-title>Teachers:</mat-card-title>
+          <mat-card-subtitle
+            >Total number of teaching staffs in our school.</mat-card-subtitle
+          >
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p class="h3 mt-3">
+            {{ teachers }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
