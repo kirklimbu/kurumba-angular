@@ -8,7 +8,7 @@
 </kurumba-list-page-template>
 </div>
 
-<!-- exam form -->
+<!-- student form -->
 <form novalidate role="form" [formGroup]="examForm">
   <fieldset class="scheduler-border">
     <legend class="scheduler-border">
@@ -23,7 +23,6 @@
           </mat-card-header>
           <mat-card-content>
             <!-- year -->
-            <form novalidate role="form" [formGroup]="yearForm">
               <div class="row">
                 <div class="col">
                   <kurumba-form-group>
@@ -44,18 +43,16 @@
                         >
                       </mat-select>
                       <mat-hint align="start">Select academic year</mat-hint>
-                      <mat-error *ngIf="yearForm.controls['year'].invalid">{{
+                      <mat-error *ngIf="examForm.controls['year'].invalid">{{
                         getYearErrorMessage()
                       }}</mat-error>
                     </mat-form-field>
                   </kurumba-form-group>
                 </div>
               </div>
-            </form>
             <!-- / year -->
 
             <!-- terminal -->
-            <form novalidate role="form" [formGroup]="terminalForm">
               <div class="row">
                 <div class="col">
                   <kurumba-form-group>
@@ -77,18 +74,16 @@
                       </mat-select>
                       <mat-hint align="start">Select terminal</mat-hint>
                       <mat-error
-                        *ngIf="terminalForm.controls['terminal'].invalid"
+                        *ngIf="examForm.controls['terminal'].invalid"
                         >{{ getTerminalErrorMessage() }}</mat-error
                       >
                     </mat-form-field>
                   </kurumba-form-group>
                 </div>
               </div>
-            </form>
             <!-- / terminal -->
 
             <!-- class -->
-            <form novalidate role="form" [formGroup]="studentForm">
               <div class="row">
                 <div class="col">
                   <kurumba-form-group>
@@ -110,15 +105,14 @@
                         >
                       </mat-select>
                       <mat-hint align="start">Select class</mat-hint>
-                      <!-- <mat-error
-                        *ngIf="studentForm.controls['className'].invalid"
+                      <mat-error
+                        *ngIf="examForm.controls['className'].invalid"
                         >{{ getClassErrorMessage() }}</mat-error
-                      > -->
+                      >
                     </mat-form-field>
                   </kurumba-form-group>
                 </div>
               </div>
-            </form>
             <!-- / class -->
 
             <!-- student -->
@@ -138,15 +132,15 @@
                         <mat-option disabled> Select Student</mat-option>
                         <mat-option
                           [value]="student.studentId"
-                         
+                          *ngFor="let student of studentList"
                           >{{ student.name }}</mat-option
                         >
                       </mat-select>
                       <mat-hint align="start">Select student</mat-hint>
-                      <!-- <mat-error
+                      <mat-error
                         *ngIf="studentForm.controls['studentName'].invalid"
                         >{{ getStudentErrorMessage() }}</mat-error
-                      > -->
+                      >
                     </mat-form-field>
 
 
@@ -156,7 +150,7 @@
             </form>
             <!-- / class -->
             <!-- enter marks block -->
-            <div class="marks-container mt-3" *ngIf="filteredClass" >
+            <div class="marks-container mt-3" *ngIf="filteredClass">
               <ng-container *ngFor="let class of filteredClass">
                 <mat-label class="text-danger"
                   >* For Absent subject, enter "N".</mat-label

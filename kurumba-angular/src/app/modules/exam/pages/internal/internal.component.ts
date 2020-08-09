@@ -1,24 +1,25 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from "ngx-toastr";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { Classes } from 'src/app/shared/models/classes.model';
-import { ExamService } from './../../services/exam.service';
-import { Marks } from './../../../../shared/models/marks.model';
-import { Student } from 'src/app/shared/models/student.model';
-import { Subject } from 'src/app/shared/models/subject.model';
-import { Terminal } from 'src/app/shared/models/terminal.model';
-import { Year } from 'src/app/shared/models/year.model';
-import { filter } from 'rxjs/operators';
-import { log } from 'util';
+import { Classes } from "src/app/shared/models/classes.model";
+import { ExamService } from "./../../services/exam.service";
+import { Marks } from "./../../../../shared/models/marks.model";
+import { Student } from "src/app/shared/models/student.model";
+import { Subject } from "src/app/shared/models/subject.model";
+import { Terminal } from "src/app/shared/models/terminal.model";
+import { Year } from "src/app/shared/models/year.model";
+import { filter } from "rxjs/operators";
+import { log } from "util";
 
 @Component({
-  selector: 'app-internal',
-  templateUrl: './internal.component.html',
-  styleUrls: ['./internal.component.scss']
+  selector: "app-internal",
+  templateUrl: "./internal.component.html",
+  styleUrls: ["./internal.component.scss"],
 })
 export class InternalComponent implements OnInit {
-
   // examForm: FormGroup;
   examForm: FormGroup;
   yearForm: FormGroup;
@@ -26,7 +27,6 @@ export class InternalComponent implements OnInit {
   studentForm: FormGroup;
   subjectForm: FormGroup;
   classForm: FormGroup;
-  marksForm: FormGroup;
   yearList: Year[] = [];
   classList: Classes[] = [];
   terminalList: Terminal[] = [];
@@ -44,9 +44,11 @@ export class InternalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private examService: ExamService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute,
-  ) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.fetchAllYear();
@@ -57,195 +59,160 @@ export class InternalComponent implements OnInit {
   }
 
   buildForm() {
-    // this.subjectForm = this.fb.group({
-    //   subjectId: [this.subjectx.subjectId],
-    //   subject: [this.subjectx.subject],
-
-    // }),
-
-      // this.classForm = this.fb.group({
-      //   classId: this.class.classId,
-      //   className: [this.class.className, [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      // }),
-      this.studentForm = this.fb.group({
-        studentId: this.student.studentId,
-        studentName: [this.student.name, [Validators.required]],
-        classx: [this.student.classx],
-      }),
-
-
-      this.examForm = this.fb.group({
-        marklist: this.fb.array([this.buildMarksForm()]),
+    (this.studentForm = this.fb.group({
+      // studentId: this.student.studentId,
+      studentName: [this.student.name, [Validators.required]],
+      // classx: [this.classForm],
+    })),
+      (this.examForm = this.fb.group({
         student: [this.studentForm],
-      });
-  }
+        marklist: this.fb.array([this.buildMarkList()]),
+      }));
 
-
-  // addMarkList() {
-  //   const markListArr = this.marksForm.get('markList') as FormArray;
-  //   markListArr.push(this.buildMarksForm());
-  // }
-
-  get marksListCollection() {
-    return this.examForm.get('markList')['controls'];
-  }
-
-  buildYearForm() {
-
-  }
-  buildMarksForm() {
-
-    this.yearForm = this.fb.group({
+    /* (this.yearForm = this.fb.group({
       yearId: this.year.yearId,
-      year: [this.year.year, [Validators.required]]
-    }),
-
-      this.terminalForm = this.fb.group({
+      year: [this.year.year, [Validators.required]],
+    })),
+      (this.terminalForm = this.fb.group({
         terminalId: this.terminal.terminalId,
         terminal: [this.terminal.terminal, [Validators.required]],
-      }),
-
-      this.marksForm = this.fb.group({
-
-        year: this.yearForm,
-        terminal: this.terminalForm,
-        prMarks: [this.marks.prMarks],
-        thMarks: [this.marks.thMarks, [Validators.required]],
-        // subject: [this.marks.subject],
-      });
+      })),
+      (this.classForm = this.fb.group({
+        classId: this.class.classId,
+        className: [
+          this.class.className,
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(10),
+          ],
+        ],
+      })),
+      (this.studentForm = this.fb.group({
+        studentId: this.student.studentId,
+        studentName: [this.student.name, [Validators.required]],
+        classx: [this.classForm],
+      })),
+      (this.subjectForm = this.fb.group({
+        subjectId: [this.subjectx.subjectId],
+        subject: [this.subjectx.subject],
+        // fmPractical: [this.subjectx.fmPractical, [Validators.required]],
+        // fmTheory: [this.subjectx.fmTheory, [Validators.required]],
+      })); */
   }
 
-
+  buildMarkList() {
+    return this.fb.group({
+      year: [this.marks.year, [Validators.required]],
+      terminal: [this.marks.terminal, [Validators.required]],
+      marksId: this.marks.marksId,
+      prMarks: [this.marks.prMarks],
+      thMarks: [this.marks.thMarks, [Validators.required]],
+      subject: [this.marks.subject, [Validators.required]],
+    });
+  }
 
   fetchAllYear() {
-    this.examService.getAllYear()
-      .subscribe(
-        years => {
-          this.yearList = years;
-          console.log('year list ' + JSON.stringify(this.yearList));
-
-        }, err => {
-          console.error('server response error ' + JSON.stringify(err));
-
-        }
-      );
-
+    this.examService.getAllYear().subscribe(
+      (years) => {
+        this.yearList = years;
+        // console.log("year list " + JSON.stringify(this.yearList));
+      },
+      (err) => {
+        console.error("server response error " + JSON.stringify(err));
+      }
+    );
   }
 
   fetchAllTerminals() {
-    this.examService.getAllTerminals()
-      .subscribe(
-        terminals => {
-          this.terminalList = terminals;
-          console.log('terminal list ' + JSON.stringify(this.terminalList));
-
-        }, err => {
-          console.error('server response error ' + JSON.stringify(err));
-
-        }
-      );
-
+    this.examService.getAllTerminals().subscribe(
+      (terminals) => {
+        this.terminalList = terminals;
+        // console.log("terminal list " + JSON.stringify(this.terminalList));
+      },
+      (err) => {
+        console.error("server response error " + JSON.stringify(err));
+      }
+    );
   }
 
-
-
   fetchAllClasses() {
-    this.examService.getAllClasses()
-      .subscribe(
-        classes => {
-          this.classList = classes;
-          console.log('class data ' + JSON.stringify(this.classList));
-
-        }, err => {
-          console.error('server response error ' + JSON.stringify(err));
-        }
-      );
-
+    this.examService.getAllClasses().subscribe(
+      (classes) => {
+        this.classList = classes;
+        // console.log("class data " + JSON.stringify(this.classList));
+      },
+      (err) => {
+        console.error("server response error " + JSON.stringify(err));
+      }
+    );
   }
 
   selectClass(id) {
-
     this.classxId = id.value;
-    console.log('selected class id:  ' + JSON.stringify(this.classxId));
+    console.log("selected class id:  " + JSON.stringify(this.classxId));
 
     // selected class subjects list
-    this.filteredClass = this.classList.filter(f => f.classId === this.classxId);
+    this.filteredClass = this.classList.filter(
+      (f) => f.classId === this.classxId
+    );
     // const subjectx = this.filteredClass.forEach( f => f.subjectCollection)
 
-    console.log('filtered class data: ' + JSON.stringify(this.filteredClass));
+    // console.log("filtered class data: " + JSON.stringify(this.filteredClass));
     // console.log('filtered subject data: ' + JSON.stringify(subjectx));
 
-
-
-  }
-  fetchAllStudents() {
-    const id =1;
-    // this.examService.getAllStudentsByClassId(this.classxId)
-    this.examService.getAllStudentsById(id)
-    .subscribe(
-      students => {
+    this.examService.getAllStudentsByClassId(this.classxId).subscribe(
+      (students) => {
         this.studentList = students;
-        console.log('student data ' + JSON.stringify(this.studentList));
-
-      }, err => {
-        console.error('server response error ' + JSON.stringify(err));
-
+        // console.log("student data " + JSON.stringify(this.studentList));
+      },
+      (err) => {
+        console.error("server response error " + JSON.stringify(err));
       }
     );
-
   }
+  fetchAllStudents() {}
 
   onSave() {
-    console.log('save clicked'+JSON.stringify(this.examForm.value));
+    console.log("save clicked");
     this.submitted = true;
 
-    const temp = this.examForm.value;
-    // console.log("form values: " + JSON.stringify(temp));
-
-
+    console.log("form values: " + JSON.stringify(this.examForm.value));
   }
 
   onCancel() {
-    console.log('cancel clicked');
-    this.router.navigate(['../../']);
-
+    console.log("cancel clicked");
+    this.router.navigate(["../../"]);
   }
-
-
 
   // error block
   getYearErrorMessage() {
-
-    return this.marksForm.controls.year.hasError('required') ? 'Academic year is required.' : '';
-
-
+    return this.examForm.controls["year"].hasError("required")
+      ? "Academic year is required."
+      : "";
   }
 
   getTerminalErrorMessage() {
-
-    return this.marksForm.controls.terminal.hasError('required') ? 'Terminal is required.' : '';
-
-
+    return this.examForm.controls["terminal"].hasError("required")
+      ? "Terminal is required."
+      : "";
   }
 
-
   getClassErrorMessage() {
-
-    return this.studentForm.controls.className.hasError('required') ? 'Class is required.' : '';
+    return this.examForm.controls["className"].hasError("required")
+      ? "Class is required."
+      : "";
   }
 
   getStudentErrorMessage() {
-
-    return this.studentForm.controls.studentName.hasError('required') ? 'Student is required.' : '';
+    return this.examForm.controls["studentName"].hasError("required")
+      ? "Student is required."
+      : "";
   }
-
 
   //  getSubjectErrorMessage() {
 
   //     return this.yearForm.controls['year'].hasError('required') ? 'Academic year is required' : '';
 
-
   //   }
-
-
 }
