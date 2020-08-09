@@ -1,26 +1,25 @@
 // Angular
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 // Third party
-import { MatTableDataSource } from '@angular/material/table';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { OntypeValidationService } from 'ontype-validations';
+import { MatTableDataSource } from "@angular/material/table";
+import { NgxSpinnerService } from "ngx-spinner";
+import { OntypeValidationService } from "ontype-validations";
 // Project
-import { TeacherService } from '../../services/teacher.service';
-import { TeacherSubject } from 'src/app/shared/models/teacher-subject.model';
-import { finalize } from 'rxjs/operators';
+import { TeacherService } from "../../services/teacher.service";
+import { TeacherSubject } from "src/app/shared/models/teacher-subject.model";
+import { finalize } from "rxjs/operators";
 
 @Component({
-  selector: 'app-teacher-subject',
-  templateUrl: './teacher-subject.component.html',
-  styleUrls: ['./teacher-subject.component.scss']
+  selector: "app-teacher-subject",
+  templateUrl: "./teacher-subject.component.html",
+  styleUrls: ["./teacher-subject.component.scss"],
 })
 export class TeacherSubjectComponent implements OnInit {
-
-  yearListDataSource: MatTableDataSource<TeacherSubject>;
-  displayedColumns: string[] = ['Sn', 'Subject'];
+  subjectListDataSource: MatTableDataSource<TeacherSubject>;
+  displayedColumns: string[] = ["Sn", "Subject"];
   teacherSubject: TeacherSubject = new TeacherSubject();
 
   formSubmitted = false;
@@ -32,37 +31,36 @@ export class TeacherSubjectComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private teacherService: TeacherService,
-    private spinner: NgxSpinnerService,
-  ) { }
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
     this.fetchTeacherSubjectList();
   }
 
-
   buildForm() {
-
     this.teacherSubjectForm = this.fb.group({
       subjectId: this.teacherSubject.subjectId,
-      subject: [this.teacherSubject.subject, [Validators.required]]
+      subject: [this.teacherSubject.subject, [Validators.required]],
     });
   }
 
   // error block
   getSujbectErrorMessage() {
-    return this.teacherSubjectForm.controls.subject.hasError('required') ? 'Subject is required' :
-      this.teacherSubjectForm.controls.subject.hasError('maxLength') ? 'Invalid subject' :
-        this.teacherSubjectForm.controls.subject.hasError('minlength') ? 'Required length is at least 2 characters' :
-          '';
+    return this.teacherSubjectForm.controls.subject.hasError("required")
+      ? "Subject is required"
+      : this.teacherSubjectForm.controls.subject.hasError("maxLength")
+      ? "Invalid subject"
+      : this.teacherSubjectForm.controls.subject.hasError("minlength")
+      ? "Required length is at least 2 characters"
+      : "";
   }
   // input copy/ paste validation
   validate(event, type?: string): any {
-
     if (this.onTypeValidateService.validate(event, type)) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -75,18 +73,19 @@ export class TeacherSubjectComponent implements OnInit {
   }
   onSave() {
     this.formSubmitted = true;
-    this.spinner.show();
-    if (this.teacherSubjectForm.valid) {
-      this.teacherService.saveTeacherSubject(this.teacherSubjectForm.value)
+    if (this.teacherSubjectForm.valid && this.formSubmitted) {
+      this.spinner.show();
+      this.teacherService
+        .saveTeacherSubject(this.teacherSubjectForm.value)
         .pipe(finalize(() => this.spinner.hide()))
         .subscribe(
-          res => {
+          (res) => {
             // this.toastr.success('Tracker SuccessFully Created.');
             // this.router.navigate(['/teacher/teacherSubject'], { relativeTo: this.route });
             window.location.reload();
           },
-          err => {
-            console.log('save server error' + JSON.stringify(err));
+          (err) => {
+            console.log("save server error" + JSON.stringify(err));
 
             // if (err.error.errors[0].defaultMessage) {
             // this.toastr.error(err.error.errors[0].defaultMessage);
@@ -96,32 +95,32 @@ export class TeacherSubjectComponent implements OnInit {
           // }
           // }
         );
-
     }
-
   }
 
   onCancel() {
-    console.log('cacncel clicked');
+    console.log("cacncel clicked");
 
-    this.router.navigate(['../'], { relativeTo: this.route });
-
+    this.router.navigate(["../"], { relativeTo: this.route });
   }
 
   fetchTeacherSubjectList() {
-    return this.teacherService.getAllTeacherSubjects()
+    this.spinner.show();
+    return this.teacherService
+      .getAllTeacherSubjects()
+      .pipe(finalize(() => this.spinner.hide()))
       .subscribe(
-        teacherSubjectList => {
-          console.log('subject list ' + JSON.stringify(teacherSubjectList));
-
-          this.yearListDataSource = new MatTableDataSource(teacherSubjectList);
+        (teacherSubjectList) => {
+          this.subjectListDataSource = new MatTableDataSource(
+            teacherSubjectList
+          );
         },
-        err => {
-          console.log('save server error' + JSON.stringify(err));
+        (err) => {
+          console.log("save server error" + JSON.stringify(err));
 
           // if (err.error.errors[0].defaultMessage) {
           // this.toastr.error(err.error.errors[0].defaultMessage);
-        });
+        }
+      );
   }
-
 }

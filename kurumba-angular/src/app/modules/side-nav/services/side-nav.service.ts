@@ -31,7 +31,7 @@ export class SideNavService {
   }
 
   saveNewPassword(password: Password): any {
-console.log('change password service calling...');
+    console.log('change password service calling...');
     return this.http.post(`${this.API_URL}/resetpassword`, { ...password })
       .pipe(
         catchError(error => {

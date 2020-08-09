@@ -23,7 +23,6 @@
                       name="className"
                       (paste)="onPaste($event, 'alphaOnly')"
                       (keypress)="validate($event, 'alphaOnly')"
-                      class="form-control"
                       formControlName="className"
                       required
                     />
@@ -38,14 +37,14 @@
                 </kurumba-form-group>
               </div>
               <div class="row">
-                <div class="col-md-12 ">
+                <div class="col-md-12">
                   <!-- subject table -->
                   <table
                     class="table table-bordered table-responsive"
                     formArrayName="subjectCollection"
                   >
                     <tr class="text-center">
-                      <th>Sn. </th>
+                      <th>Sn.</th>
                       <th>Subject</th>
                       <th>Theory marks</th>
                       <th>Practical marks</th>
@@ -76,7 +75,7 @@
                           id="subject"
                           type="text"
                           formControlName="subject"
-                          class="form-control "
+                          class="form-control"
                           required
                         />
                       </td>

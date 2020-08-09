@@ -52,8 +52,8 @@
                         <!-- save cancel button -->
                         <div class="mr-3 mt-3">
                           <kurumba-save-cancel-buttons
+
                             (save)="onSave()"
-                            (cancel)="onCancel()"
                           >
                           </kurumba-save-cancel-buttons>
                         </div>
@@ -94,7 +94,7 @@
           <!-- Sn Column -->
           <ng-container matColumnDef="Sn">
             <th mat-header-cell *matHeaderCellDef>No.</th>
-            <td mat-cell *matCellDef="let element; index as i">{{ i + 1 }}</td>
+            <td mat-cell *matCellDef="let element; index as i">{{ i + 1 }}.</td>
           </ng-container>
 
           <!-- Name Column -->
