@@ -1,69 +1,22 @@
+#img-container {
+  display: grid;
+  place-items: center;
+}
+
+#login-container {
+  display: grid;
+  place-items: center;
+}
+
 img {
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  margin-left: 120%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: thin dotted;
-
 }
-
 mat-card {
-  max-width: 400px;
-  margin: 2em auto;
+  width: 400px;
+  margin: 10em auto;
   text-align: center;
-  height: 500px;
-  // card at the center
-  position: absolute; //or relative
-  top: 45%;
-  left: 55%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-
-}
-
-mat-card-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.my-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.text-center {
-  margin-left: 170%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15%;
-}
-
-.full-width {
-  width: 50%;
-  margin-left: 5%;
-  margin-top: 5%;
-}
-
-.error-msg {
-  display: flex;
-  flex: 0 0 auto;
-  overflow: auto;
-  color: white;
-  width: 50%;
-  margin-left: 27%;
-  background-color: #ff8080;
-  padding: 4px;
-  border-radius: 4px;
-  margin-bottom: 24px;
-  font-size: 12px;
-  text-transform: capitalize;
-  align-items: center;
-  align-content: center;
+  height: 580px;
 }
