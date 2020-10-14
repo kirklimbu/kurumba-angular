@@ -16,9 +16,10 @@ export class DeletePopupComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<DeletePopupComponent>,
-    // @Inject(MAT_DIALOG_DATA) public message: string
-    // @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) private modalData: any, // teacher component le teacher object pathako child component (delete componment lai)
+
     ) {
+      console.log(this.modalData);
 
     }
 
@@ -28,7 +29,7 @@ export class DeletePopupComponent implements OnInit {
 
 
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close('yes');
 
   }
 
