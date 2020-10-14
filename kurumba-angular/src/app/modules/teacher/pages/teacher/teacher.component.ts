@@ -1,35 +1,36 @@
+import { log } from 'util';
 // Angular
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Third-party
-import { MatTableDataSource } from "@angular/material/table";
-import { NgxSpinnerService } from "ngx-spinner";
-import { MatDialog } from "@angular/material/dialog";
-import { ToastrService } from "ngx-toastr";
-import { finalize } from "rxjs/operators";
+import { MatTableDataSource } from '@angular/material/table';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs/operators';
 
 // Project
-import { StudentService } from "src/app/modules/student/services/student.service";
-import { TeacherService } from "./../../services/teacher.service";
-import { DeletePopupComponent } from "src/app/shared/components/delete-popup/delete-popup.component";
+import { StudentService } from 'src/app/modules/student/services/student.service';
+import { TeacherService } from './../../services/teacher.service';
+import { DeletePopupComponent } from 'src/app/shared/components/delete-popup/delete-popup.component';
 
 @Component({
-  selector: "app-teacher",
-  templateUrl: "./teacher.component.html",
-  styleUrls: ["./teacher.component.scss"],
+  selector: 'app-teacher',
+  templateUrl: './teacher.component.html',
+  styleUrls: ['./teacher.component.scss'],
 })
 export class TeacherComponent implements OnInit {
   // props
   displayedColumns: string[] = [
-    "Sn",
-    "Name",
-    "Address",
-    "Phone Num",
-    "D.O.B",
-    "Qualification",
-    "Subject",
-    "Action",
+    'Sn',
+    'Name',
+    'Address',
+    'Phone Num',
+    'D.O.B',
+    'Qualification',
+    'Subject',
+    'Action',
   ];
   teacherListDataSource: MatTableDataSource<any>;
   student: any;
@@ -49,7 +50,7 @@ export class TeacherComponent implements OnInit {
   }
 
   studentForm(mode, id?) {
-    const link: any = mode === "add" ? "addTeacher" : "editTeacher/";
+    const link: any = mode === 'add' ? 'addTeacher' : 'editTeacher/';
     this.router.navigate([link], {
       relativeTo: this.route,
       queryParams: { teacherId: id },
@@ -71,25 +72,23 @@ export class TeacherComponent implements OnInit {
         (err) => {
           err = err.error.message
             ? this.toastr.error(err.error.message)
-            : this.toastr.error("Error fetching teachers list.");
+            : this.toastr.error('Error fetching teachers list.');
         }
       );
   }
 
   onDelete(teacher) {
-    console.log("delete button pressed & teacher id" + JSON.stringify(teacher));
+    console.log('delete button pressed & teacher id' + JSON.stringify(teacher));
     const dialogRef = this.dialog.open(DeletePopupComponent, {
-      width: "450px",
+      width: '450px',
       data: {
-        // message: 'Are you sure you want to delete?'
+        // passing data for child component(delete component)
       },
     });
 
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      console.log("RESULT value  " + result);
-      console.log("dialog was closed " + JSON.stringify(teacher));
-      if (result) {
-        console.log("modal result " + result);
+    dialogRef.afterClosed().subscribe((result) => {
+      // console.log(`Dialog result: ${result}`);
+      if (result === 'yes') {
         this.spinner.show();
         const idx = this.teacherList.indexOf(teacher);
         const sub = this.teacherService
@@ -97,7 +96,7 @@ export class TeacherComponent implements OnInit {
           .subscribe(
             (data) => {
               this.teacherList[idx] = data.result;
-              this.toastr.success("Teacher successfully deleted.");
+              this.toastr.success('Teacher successfully deleted.');
               window.location.reload(); // temporary
 
               this.teacherList.splice(idx, 1);
@@ -107,27 +106,7 @@ export class TeacherComponent implements OnInit {
             (err) => {
               err = err.error.message
                 ? this.toastr.error(err.error.message)
-                : this.toastr.error("Error while deleting the teacher.");
-              sub.unsubscribe();
-            }
-          );
-      } else {
-        this.spinner.show();
-        const idx = this.teacherList.indexOf(teacher);
-        const sub = this.teacherService
-          .deleteTeacher(teacher.teacherId)
-          .subscribe(
-            (data) => {
-              this.teacherList[idx] = data.result;
-              this.toastr.success("Teacher successfully deleted.");
-              window.location.reload(); // temporary
-
-              this.teacherList.splice(idx, 1);
-              this.spinner.hide();
-              sub.unsubscribe();
-            },
-            (err) => {
-              this.toastr.error("Error while deleting the teacher.");
+                : this.toastr.error('Error while deleting the teacher.');
               sub.unsubscribe();
             }
           );

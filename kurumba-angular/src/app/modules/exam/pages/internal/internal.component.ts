@@ -1,23 +1,23 @@
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Classes } from "src/app/shared/models/classes.model";
-import { ExamService } from "./../../services/exam.service";
-import { Marks } from "./../../../../shared/models/marks.model";
-import { Student } from "src/app/shared/models/student.model";
-import { Subject } from "src/app/shared/models/subject.model";
-import { Terminal } from "src/app/shared/models/terminal.model";
-import { Year } from "src/app/shared/models/year.model";
-import { filter } from "rxjs/operators";
-import { log } from "util";
+import { Classes } from 'src/app/shared/models/classes.model';
+import { ExamService } from './../../services/exam.service';
+import { Marks } from './../../../../shared/models/marks.model';
+import { Student } from 'src/app/shared/models/student.model';
+import { Subject } from 'src/app/shared/models/subject.model';
+import { Terminal } from 'src/app/shared/models/terminal.model';
+import { Year } from 'src/app/shared/models/year.model';
+import { filter } from 'rxjs/operators';
+import { log } from 'util';
 
 @Component({
-  selector: "app-internal",
-  templateUrl: "./internal.component.html",
-  styleUrls: ["./internal.component.scss"],
+  selector: 'app-internal',
+  templateUrl: './internal.component.html',
+  styleUrls: ['./internal.component.scss'],
 })
 export class InternalComponent implements OnInit {
   // examForm: FormGroup;
@@ -119,7 +119,7 @@ export class InternalComponent implements OnInit {
         // console.log("year list " + JSON.stringify(this.yearList));
       },
       (err) => {
-        console.error("server response error " + JSON.stringify(err));
+        console.error('server response error ' + JSON.stringify(err));
       }
     );
   }
@@ -131,7 +131,7 @@ export class InternalComponent implements OnInit {
         // console.log("terminal list " + JSON.stringify(this.terminalList));
       },
       (err) => {
-        console.error("server response error " + JSON.stringify(err));
+        console.error('server response error ' + JSON.stringify(err));
       }
     );
   }
@@ -143,14 +143,14 @@ export class InternalComponent implements OnInit {
         // console.log("class data " + JSON.stringify(this.classList));
       },
       (err) => {
-        console.error("server response error " + JSON.stringify(err));
+        console.error('server response error ' + JSON.stringify(err));
       }
     );
   }
 
   selectClass(id) {
     this.classxId = id.value;
-    console.log("selected class id:  " + JSON.stringify(this.classxId));
+    console.log('selected class id:  ' + JSON.stringify(this.classxId));
 
     // selected class subjects list
     this.filteredClass = this.classList.filter(
@@ -167,47 +167,47 @@ export class InternalComponent implements OnInit {
         // console.log("student data " + JSON.stringify(this.studentList));
       },
       (err) => {
-        console.error("server response error " + JSON.stringify(err));
+        console.error('server response error ' + JSON.stringify(err));
       }
     );
   }
   fetchAllStudents() {}
 
   onSave() {
-    console.log("save clicked");
+    console.log('save clicked');
     this.submitted = true;
 
-    console.log("form values: " + JSON.stringify(this.examForm.value));
+    console.log('form values: ' + JSON.stringify(this.examForm.value));
   }
 
   onCancel() {
-    console.log("cancel clicked");
-    this.router.navigate(["../../"]);
+    console.log('cancel clicked');
+    this.router.navigate(['../../']);
   }
 
   // error block
   getYearErrorMessage() {
-    return this.examForm.controls["year"].hasError("required")
-      ? "Academic year is required."
-      : "";
+    return this.examForm.controls['year'].hasError('required')
+      ? 'Academic year is required.'
+      : '';
   }
 
   getTerminalErrorMessage() {
-    return this.examForm.controls["terminal"].hasError("required")
-      ? "Terminal is required."
-      : "";
+    return this.examForm.controls['terminal'].hasError('required')
+      ? 'Terminal is required.'
+      : '';
   }
 
   getClassErrorMessage() {
-    return this.examForm.controls["className"].hasError("required")
-      ? "Class is required."
-      : "";
+    return this.examForm.controls['className'].hasError('required')
+      ? 'Class is required.'
+      : '';
   }
 
   getStudentErrorMessage() {
-    return this.examForm.controls["studentName"].hasError("required")
-      ? "Student is required."
-      : "";
+    return this.examForm.controls['studentName'].hasError('required')
+      ? 'Student is required.'
+      : '';
   }
 
   //  getSubjectErrorMessage() {
