@@ -1,29 +1,29 @@
-import { ToastrService } from "ngx-toastr";
+import { ToastrService } from 'ngx-toastr';
 // angular
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // third-party
-import { MatTableDataSource } from "@angular/material/table";
-import { finalize } from "rxjs/operators";
-import { NgxSpinnerService } from "ngx-spinner";
+import { MatTableDataSource } from '@angular/material/table';
+import { finalize } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 // project
-import { Year } from "src/app/shared/models/year.model";
-import { OntypeValidationService } from "ontype-validations";
-import { YearService } from "../../services/year.service";
+import { Year } from 'src/app/shared/models/year.model';
+import { OntypeValidationService } from 'ontype-validations';
+import { YearService } from '../../services/year.service';
 @Component({
-  selector: "app-year",
-  templateUrl: "./year.component.html",
-  styleUrls: ["./year.component.scss"],
+  selector: 'app-year',
+  templateUrl: './year.component.html',
+  styleUrls: ['./year.component.scss'],
 })
 export class YearComponent implements OnInit {
   // props
   yearListDataSource: MatTableDataSource<Year>;
-  displayedColumns: string[] = ["Sn", "Year"];
+  displayedColumns: string[] = ['Sn', 'Year'];
   year: Year = new Year();
   formSubmitted = false;
-
+  mode = 'add';
   yearForm: FormGroup;
   constructor(
     private onTypeValidateService: OntypeValidationService,
@@ -59,20 +59,20 @@ export class YearComponent implements OnInit {
         (err) => {
           err = err.error.message
             ? this.toastr.error(err.error.message)
-            : this.toastr.error("Error adding academic year list.");
+            : this.toastr.error('Error adding academic year list.');
         }
       );
   }
 
   // error block
   getYearErrorMessage() {
-    return this.yearForm.controls["year"].hasError("required")
-      ? "Academic year is required."
-      : this.yearForm.controls["year"].hasError("maxLength")
-      ? "Invalid year."
-      : this.yearForm.controls["year"].hasError("minlength")
-      ? "Required length is at least 2 characters."
-      : "";
+    return this.yearForm.controls['year'].hasError('required')
+      ? 'Academic year is required.'
+      : this.yearForm.controls['year'].hasError('maxLength')
+      ? 'Invalid year.'
+      : this.yearForm.controls['year'].hasError('minlength')
+      ? 'Required length is at least 2 characters.'
+      : '';
   }
   // input copy/ paste validation
   validate(event, type?: string): any {
@@ -95,19 +95,22 @@ export class YearComponent implements OnInit {
         .pipe(finalize(() => this.spinner.hide()))
         .subscribe(
           (res) => {
-            this.toastr.success("Academic year successFully created.");
-            this.router.navigate(["../"], { relativeTo: this.route });
+            this.toastr.success('Academic year successFully created.');
+            this.router.navigate(['../'], { relativeTo: this.route });
           },
           (err) => {
             err = err.error.message
               ? this.toastr.error(err.error.message)
-              : this.toastr.error("Error adding academic year.");
+              : this.toastr.error('Error adding academic year.');
           }
         );
     }
   }
 
-  /* onCancel() {
-    this.router.navigate(["../"], { relativeTo: this.route });
-  } */
+  onCancel() {
+    console.log(this.mode);
+    // this.router.navigate(['../'], { relativeTo: this.route });
+    const link: any = this.mode === 'add' ? '../' : '../';
+    this.router.navigate([link], { relativeTo: this.route });
+  }
 }

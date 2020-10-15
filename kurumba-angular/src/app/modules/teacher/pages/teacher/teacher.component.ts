@@ -46,10 +46,10 @@ export class TeacherComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchAllStudents();
+    this.fetchAllTeachers();
   }
 
-  studentForm(mode, id?) {
+  teacherForm(mode, id?) {
     const link: any = mode === 'add' ? 'addTeacher' : 'editTeacher/';
     this.router.navigate([link], {
       relativeTo: this.route,
@@ -59,13 +59,15 @@ export class TeacherComponent implements OnInit {
 
   onSearch() {}
 
-  fetchAllStudents() {
+  fetchAllTeachers() {
     this.spinner.show();
     this.teacherService
       .getAllTeachers()
       .pipe(finalize(() => this.spinner.hide()))
       .subscribe(
         (teachers) => {
+          console.log(teachers);
+
           this.teacherList = teachers;
           this.teacherListDataSource = new MatTableDataSource(teachers);
         },

@@ -192,10 +192,11 @@ export class StudentFormComponent implements OnInit {
   // input copy/ paste validation
   validate(event, type?: string): any {
 
-    if (this.onTypeValidateService.validate(event, type))
+    if (this.onTypeValidateService.validate(event, type)) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   onPaste(event: ClipboardEvent, type?: string): any {
